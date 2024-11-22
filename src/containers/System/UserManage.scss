@@ -1,0 +1,87 @@
+.users-container {
+    .users-table {
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+          }
+          
+          #customers tr:nth-child(even){background-color: #f2f2f2;}
+          
+          #customers tr:hover {background-color: #ddd;}
+          
+          #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+          }
+    }
+}
+.btn-edit{
+    width: 50px;
+    border: 1px solid orange;
+    outline: none;
+    background: transparent;
+    color: orange;
+    margin-right: 10px;
+
+    &:hover{
+        background-color: transparent !important;
+        color: rgb(25, 185, 203) !important;
+        border: 1px solid rgb(25, 185, 203)
+    }
+}
+.btn-delete{
+    width: 50px;
+    border: 1px solid red;
+    outline: none;
+    background: transparent;
+    color: rgb(217, 16, 16);
+
+    &:hover{
+        background-color: transparent !important;
+        color: rgb(25, 185, 203) !important;
+        border: 1px solid rgb(25, 185, 203)
+    }
+}
+
+.model-user-container{
+    .modal-header{
+        button{
+            background-color: transparent !important;
+            color: white;
+            border: none;
+            font-size: 25px; 
+            margin-left: auto;
+        }
+    }
+    .model-user-body{
+        display: flex;
+        gap: 15px;      //Quy định khoảng cách các thằng con bên trong
+        flex-wrap: wrap;
+        .input-container{
+            display: flex;
+            flex-direction: column;  //Các phần tử con trong .input-container sẽ được sắp xếp theo chiều dọc, 
+            width: 49%;                        //nghĩa là mỗi trường nhập liệu sẽ nằm dưới nhau.         
+            
+            &.max-width{    //Cho nó nang cấp với thằng cha
+                width: 100%;
+            }
+            input{
+                border-radius: 3px;
+                border: 1px solid green;
+                padding: 0 10px;
+                height: 30px;
+            }
+        }
+    }
+
+    
+}

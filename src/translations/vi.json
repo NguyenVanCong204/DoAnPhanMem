@@ -1,4 +1,24 @@
 {
+    "home-header":{
+        "speciality" :"Chuyên khoa",
+        "searchdoctor":"Tìm bác sĩ theo chuyên khoa",
+        "medicalfacility":"Cơ sở y tế",
+        "hospitalclinic":"Chọn bệnh viện phòng khám",
+        "doctor":"Bác Sĩ",
+        "gooddoctor":"Chọn bác sĩ giỏi",
+        "examinationpackage":"Gói Khám",
+        "generalhealthexamination":"Khám sức khỏe tổng quát",
+        "help":"Hỗ Trợ",
+        "medicalfoundation":"NỀN TẢNG Y TẾ",
+        "comprehensivehealthcare":"CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+        "specializedexamination":"Khám Chuyên khoa",
+        "remoteexamination":"Khám từ xa",
+        "generalexamination":"Khám tổng quát",
+        "medicaltests":"Xét nghiệm y học",
+        "mentalhealth":"Sức khỏe tinh thần",
+        "dentalexamination":"Khám nha khoa"
+    },
+
     "common": {
         "add": "Thêm",
         "edit": "Sửa",
@@ -116,5 +136,5 @@
             "remove-assign-fail": "Bỏ gán gói dịch vụ cho khách hàng thất bại",
             "sure-delete-assign": "Bạn có chắc chắn muốn bỏ gán gói dịch vụ cho khách hàng?"
         }
-    }
+    }   
 }

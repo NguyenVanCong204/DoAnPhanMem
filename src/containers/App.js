@@ -20,6 +20,7 @@ import System from '../routes/System';
 import { CustomToastCloseButton } from '../components/CustomToast';
 
 import HomePage from './HomePage/HomePage';
+import CustomScrollbars from '../components/CustomScrollbars';
 
 class App extends Component {
 
@@ -44,30 +45,45 @@ class App extends Component {
     HomePage
     render() {
         return (
-            <Fragment>
-                <Router history={history}>
-                    <div className="main-container">              
-                        {this.props.isLoggedIn && <Header />}
+          <Fragment>
+            <Router history={history}>
+              <div className="main-container">
+                {this.props.isLoggedIn && <Header />}
+                
+                <div className="content-container">
+                    {/* //100vh == chiều cao màn hình khi kích thước lớn hơn 100 sẽ hiện scrollbars */}
+                  <CustomScrollbars style={{height:'100vh',width:'100%'}}> 
+                    <Switch>
+                      <Route path={path.HOME} exact component={Home} />
+                      <Route
+                        path={path.LOGIN}
+                        component={userIsNotAuthenticated(Login)}
+                      />
+                      <Route
+                        path={path.SYSTEM}
+                        component={userIsAuthenticated(System)}
+                      />
+                      <Route path={path.HOMEPAGE} component={HomePage} />
+                    </Switch>
+                  </CustomScrollbars>
+                </div>
 
-                        <span className="content-container">
-                            <Switch>
-                                <Route path={path.HOME} exact component={(Home)} />
-                                <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                                <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
-                                <Route path={path.HOMEPAGE} component={HomePage} />
-                            </Switch>
-                        </span>
-
-                        <ToastContainer
-                            className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
-                            autoClose={false} hideProgressBar={true} pauseOnHover={false}
-                            pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
-                            closeButton={<CustomToastCloseButton />}
-                        />
-                    </div>
-                </Router>
-            </Fragment>
-        )
+                <ToastContainer
+                  className="toast-container"
+                  toastClassName="toast-item"
+                  bodyClassName="toast-item-body"
+                  autoClose={false}
+                  hideProgressBar={true}
+                  pauseOnHover={false}
+                  pauseOnFocusLoss={true}
+                  closeOnClick={false}
+                  draggable={false}
+                  closeButton={<CustomToastCloseButton />}
+                />
+              </div>
+            </Router>
+          </Fragment>
+        );
     }
 }
 

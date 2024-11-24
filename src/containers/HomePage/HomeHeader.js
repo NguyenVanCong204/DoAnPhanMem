@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 import './HomeHeader.scss'
 import logo from '../../assets/images/bookingcare-logo-v3.png'
 import { FormattedMessage } from 'react-intl'
+import {languages} from "../../utils";
+import {changeLanguageApp} from "../../store/actions"
 
 class HomeHeader extends Component {
+    SetLanguage=(language)=>{
+      this.props.changLanguageAppRedux(language)
+    }
     render() {
+        let language=this.props.lang
+        console.log(language)
         return (
           <React.Fragment>
             <div className="home-header-container">
@@ -47,8 +54,8 @@ class HomeHeader extends Component {
                   <div className="support">
                     <i class="fa-solid fa-circle-question"></i><FormattedMessage id="home-header.help"/>
                   </div>
-                  <div className="language-vi">VN</div>
-                  <div className="language-en">EN</div>
+                  <div className={language===languages.VI ? 'language-vi active' : 'language-vi'}><span onClick={()=>this.SetLanguage(languages.VI)}>VI</span></div>
+                  <div className={language===languages.EN ? 'language-en active' : 'language-en'}><span onClick={()=>this.SetLanguage(languages.EN)}>EN</span></div>
                 </div>
               </div>
             </div>
@@ -59,7 +66,7 @@ class HomeHeader extends Component {
                   <div className="title2"><FormattedMessage id="home-header.comprehensivehealthcare"/></div>
                   <div className="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input placeholder="Tìm chuyên khoa khám bệnh" />
+                    <input placeholder="TÌm kiếm chuyên khoa"/> 
                   </div>
                 </div>
                 <div className="content-down">
@@ -119,6 +126,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        changLanguageAppRedux : (language) => dispatch(changeLanguageApp(language))
     };
 };
 

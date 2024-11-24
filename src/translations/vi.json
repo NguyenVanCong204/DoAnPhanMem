@@ -16,7 +16,8 @@
         "generalexamination":"Khám tổng quát",
         "medicaltests":"Xét nghiệm y học",
         "mentalhealth":"Sức khỏe tinh thần",
-        "dentalexamination":"Khám nha khoa"
+        "dentalexamination":"Khám nha khoa",
+        "findamedicalspecialist":"Tìm chuyên khoa khám bệnh"
     },
 
     "common": {

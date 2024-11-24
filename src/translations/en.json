@@ -8,7 +8,7 @@
         "gooddoctor":"Good Doctor",
         "examinationpackage":"Examination Package",
         "generalhealthexamination":"General health examination",
-        "help":"Help",
+        "help":"Support",
         "medicalfoundation":"MEDICAL FOUNDATION",
         "comprehensivehealthcare":"COMPREHENSIVE HEALTH CARE",
         "specializedexamination":"Specialized Examination",
@@ -16,7 +16,8 @@
         "generalexamination":"General examination",
         "medicaltests":"Medical tests",
         "mentalhealth":"Mental health",
-        "dentalexamination":"Dental examination"
+        "dentalexamination":"Dental examination",
+        "findamedicalspecialist":"Find a medical specialist"
 
     },
 

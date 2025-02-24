@@ -48,7 +48,6 @@ class App extends Component {
           <Fragment>
             <Router history={history}>
               <div className="main-container">
-                {this.props.isLoggedIn && <Header />}
                 
                 <div className="content-container">
                     {/* //100vh == chiều cao màn hình khi kích thước lớn hơn 100 sẽ hiện scrollbars */}
@@ -90,7 +89,6 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         started: state.app.started,
-        isLoggedIn: state.user.isLoggedIn
     };
 };
 

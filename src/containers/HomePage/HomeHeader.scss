@@ -1,10 +1,15 @@
 .home-header-container{
     width: 100%;
     display: inline;
+    
     .home-header-content{
         width: 100%;
         height: 100%;
         display: flex;
+        position: sticky;    //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        top: 0;              //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        background: white;  //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        z-index: 1000;           //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
         .left-content{
             height: 80px;
             width: 25%;

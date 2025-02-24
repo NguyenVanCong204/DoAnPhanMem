@@ -28,4 +28,11 @@ const updateUserService=(data)=>{
         data:data
     })
 }
-export{handleLoginApi,getAllUsers,createNewUserService,deleteUserService,updateUserService}
+const getAllCodeService=(inputType)=>{
+    return axios({
+        method: 'get',
+        url:'/api/AllCode',
+        params:{type : inputType}
+    });
+}
+export{handleLoginApi,getAllUsers,createNewUserService,deleteUserService,updateUserService,getAllCodeService}

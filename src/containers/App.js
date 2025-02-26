@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, Bounce } from 'react-toastify';
 
 
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
@@ -48,10 +48,9 @@ class App extends Component {
           <Fragment>
             <Router history={history}>
               <div className="main-container">
-                
                 <div className="content-container">
-                    {/* //100vh == chiều cao màn hình khi kích thước lớn hơn 100 sẽ hiện scrollbars */}
-                  <CustomScrollbars style={{height:'100vh',width:'100%'}}> 
+                  {/* //100vh == chiều cao màn hình khi kích thước lớn hơn 100 sẽ hiện scrollbars */}
+                  <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                     <Switch>
                       <Route path={path.HOME} exact component={Home} />
                       <Route
@@ -66,18 +65,19 @@ class App extends Component {
                     </Switch>
                   </CustomScrollbars>
                 </div>
-
+                
                 <ToastContainer
-                  className="toast-container"
-                  toastClassName="toast-item"
-                  bodyClassName="toast-item-body"
-                  autoClose={false}
-                  hideProgressBar={true}
-                  pauseOnHover={false}
-                  pauseOnFocusLoss={true}
+                  position="bottom-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
                   closeOnClick={false}
-                  draggable={false}
-                  closeButton={<CustomToastCloseButton />}
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="colored"
+                  transition={Bounce}
                 />
               </div>
             </Router>

@@ -31,7 +31,8 @@
     background: transparent;
     color: orange;
     margin-right: 10px;
-
+    margin-left: 50px;
+    margin-top: 5px;
     &:hover{
         background-color: transparent !important;
         color: rgb(25, 185, 203) !important;
@@ -44,6 +45,9 @@
     outline: none;
     background: transparent;
     color: rgb(217, 16, 16);
+    margin-top: 5px;
+    
+    
 
     &:hover{
         background-color: transparent !important;

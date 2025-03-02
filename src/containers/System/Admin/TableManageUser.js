@@ -26,6 +26,9 @@ class TableManageUser extends Component {
       // console.log("NVC",user)
       this.props.deleteUserRedux(user.id);
     }
+    handleEditUser=(user)=>{
+      this.props.handleEditUserFromParentKey(user)
+    }
     render() {
       // console.log("NVC",this.props.listUser);
       // console.log("check redux ",this.state.userRedux);
@@ -51,7 +54,7 @@ class TableManageUser extends Component {
                       <td>
                         <button
                           className="btn-edit"
-                          // onClick={() => this.handleEditUser(item)}
+                          onClick={() => this.handleEditUser(item)}
                         >
                           <i className="fa-solid fa-pencil-alt"></i>
                         </button>

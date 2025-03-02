@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import {getAllCodeService} from "../../../services/userService";
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import {languages} from "../../../utils"
+import {languages,CRUD_ACTIONS,CommonUtils} from "../../../utils"
 import "./UserRedux.scss"
 import TableManageUser from './TableManageUser';
+import { Buffer } from 'buffer';
 
 import * as actions from "../../../store/actions"
 
@@ -30,6 +31,9 @@ class UserRedux extends Component {
             position:"",
             role : "",
             avatar : "",
+
+            actions:"",
+            userEditId:""
         }
     }
 
@@ -57,53 +61,59 @@ class UserRedux extends Component {
     }
 
     componentDidUpdate(prevProps,prevState,snapshot){
-      let arrGenders=this.props.genderRedux;
-      let arrPositions=this.props.positionRedux;
       let arrRoles=this.props.roleRedux;
       if(prevProps.genderRedux !== this.props.genderRedux){
+        let arrGenders=this.props.genderRedux;
         this.setState({
           genderArr : this.props.genderRedux,
           gender : arrGenders && arrGenders.length>0 ? arrGenders[0].key : ""
         })
       }
       if(prevProps.positionRedux !== this.props.positionRedux){
+        let arrPositions=this.props.positionRedux;
         this.setState({
           positionArr : this.props.positionRedux,
           position : arrPositions && arrPositions.length>0 ? arrPositions[0].key : ""
         })
       }
       if(prevProps.roleRedux !== this.props.roleRedux){
+        let arrRoles=this.props.roleRedux;
         this.setState({
           roleArr :this.props.roleRedux,
           role : arrRoles && arrRoles.length>0 ? arrRoles[0].key : ""
         })
       }
       if(prevProps.listUser !== this.props.listUser){
+        let arrGenders=this.props.genderRedux;
+        let arrPositions=this.props.positionRedux;
+        let arrRoles=this.props.roleRedux;
         this.setState({
           email: "",
           password: "",
           firstName: "",
           lastName: "",
           phoneNumber: "",
-          gender: "",
+          gender : arrGenders && arrGenders.length>0 ? arrGenders[0].key : "",
           address: "",
-          position: "",
-          role: "",
-          avatar: "",
+          position : arrPositions && arrPositions.length>0 ? arrPositions[0].key : "",
+          role : arrRoles && arrRoles.length>0 ? arrRoles[0].key : "",
+          priviewImgURL: "",
+          actions:CRUD_ACTIONS.CREATE,
         });
       }
     }
 
 
-    handleOnchangeImage=(event)=>{
+    handleOnchangeImage=async (event)=>{
       let data = event.target.files;
       let file=data[0];
 
       if(file){
+        let base64=await CommonUtils.getBase64(file);
         let objectUrl = URL.createObjectURL(file)
         this.setState({
           priviewImgURL:objectUrl,
-          avatar : file
+          avatar : base64
         })
       }
       
@@ -118,7 +128,9 @@ class UserRedux extends Component {
     handleSaveUser=()=>{
       let isValid = this.checkValidateInput();
       if(isValid===false) return;
-
+      
+      let actions = this.state.actions
+      if(actions===CRUD_ACTIONS.CREATE){
       this.props.createNewUser({
                 email: this.state.email,
                 password: this.state.password,
@@ -128,8 +140,24 @@ class UserRedux extends Component {
                 phonenumber: this.state.phoneNumber,
                 gender: this.state.gender,      
                 roleId: this.state.role,
-                positionId : this.state.position  
-      })
+                positionId : this.state.position,
+                avatar : this.state.avatar
+      })}
+      if(actions===CRUD_ACTIONS.EDIT){
+        this.props.updateUserRedux({
+          id :this.state.userEditId,
+          email: this.state.email,
+          password: this.state.password,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          address: this.state.address,
+          phonenumber: this.state.phoneNumber,
+          gender: this.state.gender,      
+          roleId: this.state.role,
+          positionId : this.state.position,
+          avatar:this.state.avatar
+        })
+      }
       // setTimeout(()=>{
       //   this.props.fetchUserRedux();
       // },1000)
@@ -160,6 +188,31 @@ class UserRedux extends Component {
       }
       return isValid
     }
+
+    handleEditUserFromParent = (user)=>{
+      let imageBase64='';
+      if(user.image){
+        imageBase64=new Buffer(user.image,'base64').toString('binary');
+      }
+
+
+      this.setState({
+        email: user.email,
+        password: 'HARDCODE',
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phonenumber,
+        gender : user.gender,
+        address: user.address,
+        position : user.positionId,
+        role : user.roleId,
+        avatar: "",
+        priviewImgURL:imageBase64,
+        actions:CRUD_ACTIONS.EDIT,
+        userEditId:user.id
+      });
+    }
+
     render() {
         let isGetGenders = this.props.isLoadingGender;
 
@@ -174,7 +227,6 @@ class UserRedux extends Component {
             <div className="title">Learn React-Redux Nguyễn Văn Công</div>
 
             <div className="user-redux-body">
-
               <div className="container">
                 <div className="row">
                   <div className="col-12 my-3">
@@ -189,39 +241,82 @@ class UserRedux extends Component {
                     <label>
                       <FormattedMessage id="manage-user.email" />
                     </label>
-                    <input className="form-control" type="email" value={email} onChange={(event)=>{this.onChangeInput(event,"email")}}/>
+                    <input
+                      className="form-control"
+                      type="email"
+                      value={email}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "email");
+                      }}
+                      disabled={this.state.actions===CRUD_ACTIONS.EDIT ? true : false}
+                    />
                   </div>
                   <div className="col-3">
                     <label>
                       <FormattedMessage id="manage-user.password" />
                     </label>
-                    <input className="form-control" type="password" value={password} onChange={(event)=>{this.onChangeInput(event,"password")}}/>
+                    <input
+                      className="form-control"
+                      type="password"
+                      value={password}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "password");
+                      }}
+                      disabled={this.state.actions===CRUD_ACTIONS.EDIT ? true : false}
+                    />
                   </div>
                   <div className="col-3">
                     <label>
                       <FormattedMessage id="manage-user.first-name" />
                     </label>
-                    <input className="form-control" type="text" value={firstName} onChange={(event)=>{this.onChangeInput(event,"firstName")}}/>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value={firstName}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "firstName");
+                      }}
+                    />
                   </div>
                   <div className="col-3">
                     <label>
                       <FormattedMessage id="manage-user.last-name" />
                     </label>
-                    <input className="form-control" type="text" value={lastName} onChange={(event)=>{this.onChangeInput(event,"lastName")}}/>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value={lastName}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "lastName");
+                      }}
+                    />
                   </div>
-
 
                   <div className="col-3">
                     <label>
                       <FormattedMessage id="manage-user.phone-number" />
                     </label>
-                    <input className="form-control" type="text" value={phoneNumber} onChange={(event)=>{this.onChangeInput(event,"phoneNumber")}}/>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value={phoneNumber}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "phoneNumber");
+                      }}
+                    />
                   </div>
                   <div className="col-9">
                     <label>
                       <FormattedMessage id="manage-user.address" />
                     </label>
-                    <input className="form-control" type="text" value={address} onChange={(event)=>{this.onChangeInput(event,"address")}}/>
+                    <input
+                      className="form-control"
+                      type="text"
+                      value={address}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "address");
+                      }}
+                    />
                   </div>
                   <div className="col-3">
                     <label>
@@ -230,7 +325,10 @@ class UserRedux extends Component {
                     <select
                       className="form-select"
                       aria-label="Default select example"
-                      onChange={(event)=>{this.onChangeInput(event,"gender")}}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "gender");
+                      }}
+                      value={gender}
                     >
                       {genders &&
                         genders.length > 0 &&
@@ -253,7 +351,10 @@ class UserRedux extends Component {
                     <select
                       className="form-select"
                       aria-label="Default select example"
-                      onChange={(event)=>{this.onChangeInput(event,"position")}}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "position");
+                      }}
+                      value={position}
                     >
                       {positions &&
                         positions.length > 0 &&
@@ -276,7 +377,10 @@ class UserRedux extends Component {
                     <select
                       className="form-select"
                       aria-label="Default select example"
-                      onChange={(event)=>{this.onChangeInput(event,"role")}}
+                      onChange={(event) => {
+                        this.onChangeInput(event, "role");
+                      }}
+                      value={role}
                     >
                       {roles &&
                         roles.length > 0 &&
@@ -296,37 +400,59 @@ class UserRedux extends Component {
                     <label>
                       <FormattedMessage id="manage-user.image" />
                     </label>
-                    <div className='preview-img-container'>
-                      <input id='previewImg' type="file" hidden
-                        onChange={(event)=>this.handleOnchangeImage(event)}
+                    <div className="preview-img-container">
+                      <input
+                        id="previewImg"
+                        type="file"
+                        hidden
+                        onChange={(event) => this.handleOnchangeImage(event)}
                       />
-                      <label className='lable-upload' htmlFor='previewImg'>Tải ảnh <i className="fa-solid fa-upload"></i></label>
-                      <div className="preview-iamge" style={{backgroundImage: `url(${this.state.priviewImgURL})`}}
-                        onClick={()=>this.openPreviewImage()}
-                      >
-
-                      </div>
+                      <label className="lable-upload" htmlFor="previewImg">
+                        Tải ảnh <i className="fa-solid fa-upload"></i>
+                      </label>
+                      <div
+                        className="preview-iamge"
+                        style={{
+                          backgroundImage: `url(${this.state.priviewImgURL})`,
+                        }}
+                        onClick={() => this.openPreviewImage()}
+                      ></div>
                     </div>
                   </div>
                   <div className="col-12 my-3">
-                    <button className="btn btn-primary px-3" onClick={()=>this.handleSaveUser()}>
-                      <FormattedMessage id="manage-user.save" />
+                    <button
+                      className={
+                        this.state.actions === CRUD_ACTIONS.EDIT
+                          ? " btn btn-warning px-3"
+                          : "btn btn-primary px-3"
+                      }
+                      onClick={() => this.handleSaveUser()}
+                    >
+                      {this.state.actions === CRUD_ACTIONS.EDIT ? (
+                        <FormattedMessage id="manage-user.edit" />
+                      ) : (
+                        <FormattedMessage id="manage-user.save" />
+                      )}
                     </button>
                   </div>
-                  <div className='col-12 mb-5'>
-                    <TableManageUser/>
+                  <div className="col-12 mb-5">
+                    <TableManageUser
+                      handleEditUserFromParentKey={
+                        this.handleEditUserFromParent
+                      } //Truyền hàm edit sang cho tk con
+                      actions={this.state.actions} //Để tk con hiểu dg ở actions nào -- chưa dùng đến #61
+                    />
                   </div>
                 </div>
               </div>
             </div>
 
-            {this.state.isOpen===true && 
+            {this.state.isOpen === true && (
               <Lightbox
-              mainSrc={this.state.priviewImgURL}
-              onCloseRequest={() => this.setState({ isOpen: false })}
+                mainSrc={this.state.priviewImgURL}
+                onCloseRequest={() => this.setState({ isOpen: false })}
               />
-            }
-            
+            )}
           </div>
         );
     }
@@ -350,6 +476,8 @@ const mapDispatchToProps = dispatch => {
       getPositionStart:()=>dispatch(actions.fetchPositionStart()),
       getRoleStart:()=>dispatch(actions.fetchRoleStart()),
       createNewUser:(data)=>dispatch(actions.createNewUser(data)),
+      updateUserRedux:(data)=>dispatch(actions.updateUser(data)),
+
       // fetchUserRedux:()=>dispatch(actions.fetchAllUserStart())
 
       // processLogout: () => dispatch(actions.processLogout()),

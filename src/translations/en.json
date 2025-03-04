@@ -1,4 +1,4 @@
-{
+{   
     "home-header":{
         "speciality" :"Medical specialist",
         "searchdoctor":"Find doctors by specialty",
@@ -9,7 +9,7 @@
         "examinationpackage":"Examination Package",
         "generalhealthexamination":"General health examination",
         "help":"Support",
-        "medicalfoundation":"MEDICAL FOUNDATION",
+        "medicalfoundation":"MEDICAL PLATFORM",
         "comprehensivehealthcare":"COMPREHENSIVE HEALTH CARE",
         "specializedexamination":"Specialized Examination",
         "remoteexamination":"Remote examination",
@@ -50,5 +50,13 @@
         "image" : "Avatar",
         "save" : "Save",
         "edit" : "Edit"
+    },
+    "hopage":{
+        "outstanding-doctor":"Last week's featured doctor",
+        "more-infor":"More Infor",
+        "popular-specialties":"Popular specialties",
+        "featured-medical-facilities":"Featured medical facilities",
+        "handbook":"Handbook"
     }
+    
 }

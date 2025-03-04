@@ -66,7 +66,7 @@ class HomeHeader extends Component {
                   <div className="title2"><FormattedMessage id="home-header.comprehensivehealthcare"/></div>
                   <div className="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input placeholder="TÌm kiếm chuyên khoa"/> 
+                    <input placeholder="Tìm kiếm chuyên khoa"/> 
                   </div>
                 </div>
                 <div className="content-down">

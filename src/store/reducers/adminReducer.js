@@ -6,6 +6,7 @@ const initialState = {
     roles : [],
     positions : [],
     users :[],
+    topDoctors:[],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -67,16 +68,19 @@ const adminReducer = (state = initialState, action) => {
           ...state,
         };
 
-    //   case actionTypes.EDIT_USER_SUCCESS:
-    //     // state.users = action.users;
-    //     return {
-    //       ...state,
-    //     };
-    //   case actionTypes.EDIT_USER_FAILDED:
-    //     // state.users = [];
-    //     return {
-    //       ...state,
-    //     };
+
+        case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
+          state.topDoctors = action.dataDoctor;
+          return {
+            ...state,
+          };
+  
+        case actionTypes.FETCH_TOP_DOCTOR_FAILED:
+          // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
+          state.topDoctors = [];
+          return {
+            ...state,
+          };
       default:
         return state;
     }

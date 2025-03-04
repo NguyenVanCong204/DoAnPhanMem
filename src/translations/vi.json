@@ -50,5 +50,12 @@
         "save" : "Lưu user",
         "edit" : "Sửa user"
         
+    },
+    "hopage":{
+        "outstanding-doctor":"Bác Sĩ Nổi Bật Tuần Qua",
+        "more-infor":"XEM THÊM",
+        "popular-specialties":"Chuyên Khoa Phổ Biến",
+        "featured-medical-facilities":"Cơ Sở Y Tế Nổi Bật",
+        "handbook":"Cẩm Nang"
     }
 }

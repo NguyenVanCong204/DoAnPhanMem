@@ -14,8 +14,8 @@ class Specialty extends Component {
           <div className="section-share section-specialty">
             <div className="section-container">
               <div className="section-header">
-                <span className='title-section'>Chuyên Khoa Phổ Biến</span>
-                <button className='btn-section'>Xem thêm</button>
+                <span className='title-section'><FormattedMessage id="hopage.popular-specialties" /></span>
+                <button className='btn-section'><FormattedMessage id="hopage.more-infor" /></button>
               </div>
               <div className="section-body">
                 <Slider {...this.props.settings}>

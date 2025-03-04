@@ -20,7 +20,7 @@ class HomePage extends Component {
     render() {
         let settings = {
             dots: false,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,  //Hiển thị 4 cái trên 1 dòng,
             slidesToScroll: 1, //Sẽ cuộn thêm 1 khi click

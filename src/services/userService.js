@@ -35,4 +35,12 @@ const getAllCodeService=(inputType)=>{
         params:{type : inputType}
     });
 }
-export{handleLoginApi,getAllUsers,createNewUserService,deleteUserService,updateUserService,getAllCodeService}
+
+const getTopDoctorHomeService=(limitInput)=>{
+    return axios({
+        method: 'get',
+        url:'/api/top-doctor-home',
+        params:{limit : limitInput}
+    })
+}
+export{handleLoginApi,getAllUsers,createNewUserService,deleteUserService,updateUserService,getAllCodeService,getTopDoctorHomeService}

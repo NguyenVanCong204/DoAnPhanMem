@@ -45,7 +45,7 @@ componentDidUpdate(prevProps,prevState,snapshot){
                       imageBase64=new Buffer(item.image,'base64').toString('binary');
                     }
                     let nameVi=`${item.positionData.valueVi},${item.lastName} ${item.firstName}`
-                    let nameEn=`${item.positionData.valueEn},${item.lastName} ${item.firstName}`
+                    let nameEn=`${item.positionData.valueEn},${item.firstName} ${item.lastName}`
                     return(
                       <div className="section-customize">
                         <div className='customize-border'>

@@ -43,4 +43,25 @@ const getTopDoctorHomeService=(limitInput)=>{
         params:{limit : limitInput}
     })
 }
-export{handleLoginApi,getAllUsers,createNewUserService,deleteUserService,updateUserService,getAllCodeService,getTopDoctorHomeService}
+const getAllDoctors=()=>{
+    return axios({
+        method: 'get',
+        url:'/api/get-all-doctors'
+    })
+}
+
+const saveDetailDoctor=(data)=>{
+    return axios({
+        method:'post',
+        url:'/api/save-infor-doctors',
+        data:data
+    })
+}
+export{handleLoginApi
+    ,getAllUsers
+    ,createNewUserService,
+    deleteUserService,
+    updateUserService,
+    getAllCodeService,
+    getTopDoctorHomeService,
+    getAllDoctors,saveDetailDoctor}

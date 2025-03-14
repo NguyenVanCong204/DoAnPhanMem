@@ -5,13 +5,12 @@ import doctorController from "../controllers/doctorController";
 
 let router=express.Router();
 let initWebRoutes=(app)=>{
+
     router.get('/', homeController.getHomePage);
     router.get('/about',homeController.getAboutPage);
     router.get('/crud',homeController.getCRUD);
-
     router.post('/post-crud',homeController.postCRUD);
     router.get('/get-crud',homeController.displayGetCRUD);  
-    
     router.get('/edit-crud',homeController.getEditCRUD);
     router.get('/delete-crud',homeController.deleteCRUD);
     router.post('/put-crud',homeController.putCRUD);
@@ -21,10 +20,12 @@ let initWebRoutes=(app)=>{
     router.post('/api/create-new-user',userController.hanldeCreateNewUser);
     router.post('/api/edit-user',userController.hanldeEditUser);
     router.delete('/api/delete-user',userController.hanldeDeleteUser);
-
     router.get('/api/AllCode',userController.AllCode);
 
     router.get('/api/top-doctor-home',doctorController.getTopDoctorHome);
+    router.get('/api/get-all-doctors',doctorController.getAllDoctors);
+    router.post('/api/save-infor-doctors',doctorController.postInforDoctor); //lưu về database
+    router.get('/api/get-detail-doctors-by-id',doctorController.getDetailDoctorById);
 
     return app.use("/",router);
 }

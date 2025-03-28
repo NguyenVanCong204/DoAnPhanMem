@@ -247,7 +247,9 @@ class UserRedux extends Component {
                       onChange={(event) => {
                         this.onChangeInput(event, "email");
                       }}
-                      disabled={this.state.actions===CRUD_ACTIONS.EDIT ? true : false}
+                      disabled={
+                        this.state.actions === CRUD_ACTIONS.EDIT ? true : false
+                      }
                     />
                   </div>
                   <div className="col-3">
@@ -261,7 +263,9 @@ class UserRedux extends Component {
                       onChange={(event) => {
                         this.onChangeInput(event, "password");
                       }}
-                      disabled={this.state.actions===CRUD_ACTIONS.EDIT ? true : false}
+                      disabled={
+                        this.state.actions === CRUD_ACTIONS.EDIT ? true : false
+                      }
                     />
                   </div>
                   <div className="col-3">

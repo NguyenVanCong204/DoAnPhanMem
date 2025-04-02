@@ -1,8 +1,10 @@
-import bcrypt from "bcryptjs";
+import { where } from "sequelize";
 import db from "../models/index";
-import { Model, where } from "sequelize";
-import { raw } from "body-parser";
-import { response } from "express";
+import _ from "lodash";
+
+require("dotenv").config();
+
+const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 
 let getTopDoctorHome = (limitInput) => {
   return new Promise(async (resolve, reject) => {
@@ -151,9 +153,61 @@ let getDetailDoctorByIdService = (InputId) => {
     }
   });
 };
+let bulkCreateScheduleService = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if ((!data.arrSchedule, !data.doctorId, !data.formateDate)) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required param !",
+        });
+      } else {
+        let schedule = data.arrSchedule;
+        if (schedule && schedule.length > 0) {
+          schedule = schedule.map((item) => {
+            item.maxBumber = MAX_NUMBER_SCHEDULE;
+            return item;
+          });
+        }
+        let existing = await db.Schedule.findAll({
+          where: { doctorId: data.doctorId, date: data.formateDate },
+          attributes: ["timeType", "date", "doctorID", "maxBumber"],
+          raw: true,
+        });
+
+        if (existing && existing.length > 0) {
+          existing = existing.map((item) => {
+            item.date = new Date(item.date).getTime();
+            return item;
+          });
+        }
+
+        let toCreate = _.differenceWith(schedule, existing, (a, b) => {
+          return a.timeType === b.timeType && a.doctorId === b.doctorId;
+        });
+        console.log("existingggggggggggg", existing);
+        console.log("tocreateeeeeeeeeeeee", toCreate);
+
+        if (toCreate && toCreate.length > 0) {
+          await db.Schedule.bulkCreate(toCreate);
+        }
+
+        // console.log("NVCCCC", schedule);
+        // console.log("check kiểu của data", typeof data);
+        resolve({
+          errCode: 0,
+          errMessage: "OK",
+        });
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctorss: getAllDoctorss,
   saveInforDoctorService: saveInforDoctorService,
   getDetailDoctorByIdService: getDetailDoctorByIdService,
+  bulkCreateScheduleService: bulkCreateScheduleService,
 };

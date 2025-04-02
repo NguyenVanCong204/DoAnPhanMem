@@ -1,106 +1,116 @@
-import actionTypes from '../actions/actionTypes';
+import actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    isLoadingGender : false,
-    genders : [],
-    roles : [],
-    positions : [],
-    users :[],
-    topDoctors:[],
-    AllDoctors:[],
-}
+  isLoadingGender: false,
+  genders: [],
+  roles: [],
+  positions: [],
+  users: [],
+  topDoctors: [],
+  AllDoctors: [],
+  times: [],
+};
 
 const adminReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case actionTypes.FETCH_GENDER_START:
-        state.isLoadingGender = true;
-        return {
-          ...state,
-        };
+  switch (action.type) {
+    case actionTypes.FETCH_GENDER_START:
+      state.isLoadingGender = true;
+      return {
+        ...state,
+      };
 
-      case actionTypes.FETCH_GENDER_SUCCESS:
-        state.genders = action.data;
-        state.isLoadingGender = false;
-        return {
-          ...state,
-        };
+    case actionTypes.FETCH_GENDER_SUCCESS:
+      state.genders = action.data;
+      state.isLoadingGender = false;
+      return {
+        ...state,
+      };
 
-      case actionTypes.FETCH_GENDER_FAILED:
-        // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
-        state.isLoadingGender = false;
-        state.genders = [];
-        return {
-          ...state,
-        };
+    case actionTypes.FETCH_GENDER_FAILED:
+      // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
+      state.isLoadingGender = false;
+      state.genders = [];
+      return {
+        ...state,
+      };
 
-      case actionTypes.FETCH_POSITION_SUCCESS:
-        state.positions = action.data;
-        return {
-          ...state,
-        };
+    case actionTypes.FETCH_POSITION_SUCCESS:
+      state.positions = action.data;
+      return {
+        ...state,
+      };
 
-      case actionTypes.FETCH_POSITION_FAILED:
-        // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
-        state.positions = [];
-        return {
-          ...state,
-        };
+    case actionTypes.FETCH_POSITION_FAILED:
+      // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
+      state.positions = [];
+      return {
+        ...state,
+      };
 
-      case actionTypes.FETCH_ROLE_SUCCESS:
-        state.roles = action.data;
-        return {
-          ...state,
-        };
+    case actionTypes.FETCH_ROLE_SUCCESS:
+      state.roles = action.data;
+      return {
+        ...state,
+      };
 
-      case actionTypes.FETCH_ROLE_FAILED:
-        // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
-        state.roles = [];
-        return {
-          ...state,
-        };
-      case actionTypes.FETCH_ALL_USERS_SUCCESS:
-        state.users = action.users;
-        return {
-          ...state,
-        };
-      case actionTypes.FETCH_ALL_USERS_FAILED:
-        state.users = [];
-        return {
-          ...state,
-        };
+    case actionTypes.FETCH_ROLE_FAILED:
+      // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
+      state.roles = [];
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ALL_USERS_SUCCESS:
+      state.users = action.users;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ALL_USERS_FAILED:
+      state.users = [];
+      return {
+        ...state,
+      };
 
+    case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
+      state.topDoctors = action.dataDoctor;
+      return {
+        ...state,
+      };
 
-        case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
-          state.topDoctors = action.dataDoctor;
-          return {
-            ...state,
-          };
-  
-        case actionTypes.FETCH_TOP_DOCTOR_FAILED:
-          // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
-          state.topDoctors = [];
-          return {
-            ...state,
-          };
-          
+    case actionTypes.FETCH_TOP_DOCTOR_FAILED:
+      // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
+      state.topDoctors = [];
+      return {
+        ...state,
+      };
 
-          case actionTypes.FETCH_All_DOCTOR_SUCCESS:
-            state.AllDoctors = action.dataDr;
-            return {
-              ...state,
-            };
-    
-          case actionTypes.FETCH_All_DOCTOR_FAILED:
-            state.AllDoctors = [];
-            return {
-              ...state,
-            };
+    case actionTypes.FETCH_All_DOCTOR_SUCCESS:
+      state.AllDoctors = action.dataDr;
+      return {
+        ...state,
+      };
 
+    case actionTypes.FETCH_All_DOCTOR_FAILED:
+      state.AllDoctors = [];
+      return {
+        ...state,
+      };
 
-          
-      default:
-        return state;
-    }
-}
+    case actionTypes.FETCH_AllCODE_SCHEDULE_TIME_SUCCESS:
+      state.times = action.dataTime;
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_AllCODE_SCHEDULE_TIME_FAILED:
+      // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
+      state.times = [];
+      return {
+        ...state,
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default adminReducer;

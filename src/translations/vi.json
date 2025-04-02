@@ -61,5 +61,11 @@
         "popular-specialties":"Chuyên Khoa Phổ Biến",
         "featured-medical-facilities":"Cơ Sở Y Tế Nổi Bật",
         "handbook":"Cẩm Nang"
+    },
+    "manage-schedule":{
+        "title" :"Quản lý kế hoạch khám bệnh của bác sĩ",
+        "choose-a-doctor" : "Chọn bác sĩ",
+        "select-date" : "Chọn ngày",
+        "save-information" : "Lưu thông tin"
     }
 }

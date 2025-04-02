@@ -60,6 +60,11 @@
         "popular-specialties":"Popular specialties",
         "featured-medical-facilities":"Featured medical facilities",
         "handbook":"Handbook"
+    },
+    "manage-schedule":{
+        "title" :"Manage doctor responses",
+        "choose-a-doctor" : "Choose a doctor",
+        "select-date" : "Select date",
+        "save-information" : "Save information"
     }
-    
 }

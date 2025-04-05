@@ -1,7 +1,6 @@
 .doctor-detail-container {
     height: 500px;
 
-
     .intro-doctor {
         display: flex;
 
@@ -27,12 +26,26 @@
             }
 
             .down {
-                padding-top: 10px;
+                padding-top  : 10px;
+                padding-right: 80px;
             }
         }
     }
 
-    .schedule-doctor {}
+    .schedule-doctor {
+        margin    : 0 100px;
+        display   : flex;
+        padding   : 25px 0;
+        min-height: 250px;
+
+        .content-left {
+            width: 50%;
+        }
+
+        .content-right {
+            width: 50%;
+        }
+    }
 
     .detail-infor-doctor {
         border-top      : 1px solid #ddd;

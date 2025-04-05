@@ -48,7 +48,7 @@ class ManageSchedule extends Component {
       });
     }
   }
-  handleChangeSelect = async (selectedDoctorr) => {
+  handleChangeSelect = (selectedDoctorr) => {
     this.setState({ selectedDoctor: selectedDoctorr });
   };
   builtDataInputSelect = (inputData) => {
@@ -124,11 +124,17 @@ class ManageSchedule extends Component {
       doctorId: selectedDoctor.value,
       formateDate: formateDate,
     });
-    toast.success("Successfully saved schedule");
+    if (res && res.errCode === 0) {
+      toast.success("Successfully saved schedule");
+    } else {
+      toast.error("Error saved schedule !");
+      console.log("error saveBulkScheduleDoctor >>> res : ", res);
+    }
   };
   render() {
     let { rangeTime } = this.state;
     let lang = this.props.lang;
+    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
     return (
       <div className="manage-schedule-container">
         <div className="manage-schedule-title">
@@ -154,7 +160,7 @@ class ManageSchedule extends Component {
                 onChange={this.handleOnchangeDatePicker}
                 className="form-control"
                 value={this.state.currentDate}
-                minDate={new Date()} //Lấy ngày hiện tại
+                minDate={yesterday} //Lấy ngày hiện tại
               />
             </div>
             <div className="col-12 pick-hour-container">

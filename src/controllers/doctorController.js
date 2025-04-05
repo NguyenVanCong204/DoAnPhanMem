@@ -69,10 +69,34 @@ let bulkCreateSchedule = async (req, res) => {
     });
   }
 };
+let getScheduleBuDate = async (req, res) => {
+  try {
+    // if (!req.query.id) {
+    //   return res.status(200).json({
+    //     errCode: 3,
+    //     message: "Missing req.query.id",
+    //   });
+    // }
+    let infor = await doctorService.getScheduleByDateService(
+      req.query.doctorId,
+      req.query.dateInput
+    );
+    return res.status(200).json(
+      infor //là một object không cần {}
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(200).json({
+      errCode: -1,
+      message: "Error from server ...",
+    });
+  }
+};
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
   postInforDoctor: postInforDoctor,
   getDetailDoctorById: getDetailDoctorById,
   bulkCreateSchedule: bulkCreateSchedule,
+  getScheduleBuDate: getScheduleBuDate,
 };

@@ -1,6 +1,7 @@
 import { where } from "sequelize";
 import db from "../models/index";
-import _ from "lodash";
+import _, { reject } from "lodash";
+import { raw } from "body-parser";
 
 require("dotenv").config();
 
@@ -175,18 +176,11 @@ let bulkCreateScheduleService = (data) => {
           raw: true,
         });
 
-        if (existing && existing.length > 0) {
-          existing = existing.map((item) => {
-            item.date = new Date(item.date).getTime();
-            return item;
-          });
-        }
-
         let toCreate = _.differenceWith(schedule, existing, (a, b) => {
           return a.timeType === b.timeType && a.doctorId === b.doctorId;
         });
-        console.log("existingggggggggggg", existing);
-        console.log("tocreateeeeeeeeeeeee", toCreate);
+        // console.log("existingggggggggggg", existing);
+        // console.log("tocreateeeeeeeeeeeee", toCreate);
 
         if (toCreate && toCreate.length > 0) {
           await db.Schedule.bulkCreate(toCreate);
@@ -204,10 +198,45 @@ let bulkCreateScheduleService = (data) => {
     }
   });
 };
+let getScheduleByDateService = (doctorId, dateInput) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId || !dateInput) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required paramater",
+        });
+      } else {
+        let data = await db.Schedule.findAll({
+          where: { doctorId: doctorId, date: dateInput },
+          include: [
+            {
+              model: db.Allcode,
+              as: "timeTypeData",
+              attributes: ["valueEn", "valueVi"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+        if (!data) {
+          data = [];
+        }
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctorss: getAllDoctorss,
   saveInforDoctorService: saveInforDoctorService,
   getDetailDoctorByIdService: getDetailDoctorByIdService,
   bulkCreateScheduleService: bulkCreateScheduleService,
+  getScheduleByDateService: getScheduleByDateService,
 };

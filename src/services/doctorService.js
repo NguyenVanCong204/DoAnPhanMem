@@ -67,7 +67,13 @@ let saveInforDoctorService = (dataInput) => {
         !dataInput.doctorId ||
         !dataInput.contentHTML ||
         !dataInput.contentMarkdown ||
-        !dataInput.action
+        !dataInput.action ||
+        !dataInput.priceId ||
+        !dataInput.provinceId ||
+        !dataInput.paymentId ||
+        !dataInput.addressClinic ||
+        !dataInput.nameClinic ||
+        !dataInput.note
       ) {
         resolve({
           errCode: 1,
@@ -102,6 +108,34 @@ let saveInforDoctorService = (dataInput) => {
             errMessage: "Edit infor doctor success !",
           });
         }
+        let doctor_infor = await db.Doctor_Infor.findOne({
+          where: { doctorId: dataInput.doctorId },
+          raw: false,
+        });
+        if (doctor_infor) {
+          doctor_infor.priceId = dataInput.priceId;
+          doctor_infor.provinceId = dataInput.provinceId;
+          doctor_infor.paymentId = dataInput.paymentId;
+          doctor_infor.addressClinic = dataInput.addressClinic;
+          doctor_infor.nameClinic = dataInput.nameClinic;
+          doctor_infor.note = dataInput.note;
+
+          await doctor_infor.save();
+        } else {
+          await db.Doctor_Infor.create({
+            priceId: dataInput.priceId,
+            provinceId: dataInput.provinceId,
+            paymentId: dataInput.paymentId,
+            doctorId: dataInput.doctorId,
+            addressClinic: dataInput.addressClinic,
+            nameClinic: dataInput.nameClinic,
+            note: dataInput.note,
+          });
+        }
+        resolve({
+          errCode: 0,
+          errMessage: "Edit infor doctor success !",
+        });
       }
     } catch (error) {
       reject(error);

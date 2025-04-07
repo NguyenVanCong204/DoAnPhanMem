@@ -52,4 +52,16 @@
             width: 60%;
         }
     }
+
+    .more-infor-extra {
+        padding-bottom: 30px;
+
+        .form-group {
+            padding: 8px 10px;
+
+            label {
+                padding-bottom: 2px;
+            }
+        }
+    }
 }

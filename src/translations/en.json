@@ -74,5 +74,17 @@
             "choose" : "Choose ",
             "book-free" :" and book (free)"
         }
+    },
+    "admin":{
+        "manage-doctor":{
+            "create-more-doctor-information":"Create more doctor information",
+            "choose-a-doctor":"Choose a doctor",
+            "introduction":"Introduction:",
+            "edit-information":"Edit information",
+            "save-information":"Save information",
+            "choose-price" : "Choose price...",
+            "select-payment-method" : "Select payment method...",
+            "select-province" : "Select province..."
+        }
     }
 }

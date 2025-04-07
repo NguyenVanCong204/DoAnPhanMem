@@ -296,3 +296,44 @@ export const fetchAllScheduleTime = () => {
     }
   };
 };
+
+export const getDoctorInfor = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({ type: actionTypes.FETCH_DOCTOR_INFOR_START });
+
+      let resPrice = await getAllCodeService("PRICE");
+      let resPayment = await getAllCodeService("PAYMENT");
+      let resProvince = await getAllCodeService("PROVINCE");
+      if (
+        resPrice &&
+        resPrice.errCode === 0 &&
+        resPayment &&
+        resPayment.errCode === 0 &&
+        resProvince &&
+        resProvince.errCode === 0
+      ) {
+        let data = {
+          resPrice: resPrice.data,
+          resPayment: resPayment.data,
+          resProvince: resProvince.data,
+        };
+        dispatch(getDoctorInforSuccess(data));
+      } else {
+        dispatch(getDoctorInforFailed());
+      }
+    } catch (error) {
+      dispatch(getDoctorInforFailed());
+      console.log("getDoctorInforStart Error", error);
+    }
+  };
+};
+
+export const getDoctorInforSuccess = (allInforDoctor) => ({
+  type: actionTypes.FETCH_DOCTOR_INFOR_SUCCESS,
+  data: allInforDoctor,
+});
+
+export const getDoctorInforFailed = () => ({
+  type: actionTypes.FETCH_DOCTOR_INFOR_FAILED,
+});

@@ -9,6 +9,7 @@ const initialState = {
   topDoctors: [],
   AllDoctors: [],
   times: [],
+  doctorInforarr: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -104,6 +105,18 @@ const adminReducer = (state = initialState, action) => {
     case actionTypes.FETCH_AllCODE_SCHEDULE_TIME_FAILED:
       // let copyState = {...state};  //{} : Là khởi tạo đối tượng như là 1 object // ...state copy lại state
       state.times = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_DOCTOR_INFOR_SUCCESS:
+      state.doctorInforarr = action.data;
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_DOCTOR_INFOR_FAILED:
+      state.doctorInforarr = [];
       return {
         ...state,
       };

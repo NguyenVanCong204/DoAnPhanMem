@@ -1,8 +1,6 @@
 //Phòng khám
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Markdown extends Model {
     /**
@@ -11,19 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Markdown.belongsTo(models.User , {foreignKey:'doctorId'})
+      Markdown.belongsTo(models.User, { foreignKey: "doctorId" });
     }
   }
-  Markdown.init({
-    contentHTML: DataTypes.TEXT('long'),
-    contentMarkdown: DataTypes.TEXT('long'),
-    description:DataTypes.TEXT('long'),
-    doctorId: DataTypes.INTEGER,
-    specialtyId:DataTypes.INTEGER,
-    clinicId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Markdown',
-  });
+  Markdown.init(
+    {
+      contentHTML: DataTypes.TEXT("long"),
+      contentMarkdown: DataTypes.TEXT("long"),
+      description: DataTypes.TEXT("long"),
+      doctorId: DataTypes.INTEGER,
+      specialtyId: DataTypes.INTEGER,
+      clinicId: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "Markdown",
+    }
+  );
   return Markdown;
 };

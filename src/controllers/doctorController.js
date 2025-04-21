@@ -92,6 +92,38 @@ let getScheduleBuDate = async (req, res) => {
     });
   }
 };
+let getExtraInforDoctorById = async (req, res) => {
+  try {
+    let infor = await doctorService.getExtraInforDoctorByIdService(
+      req.query.doctorId
+    );
+    return res.status(200).json(
+      infor //là một object không cần {}
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(200).json({
+      errCode: -1,
+      message: "Error from server ...",
+    });
+  }
+};
+let getProfileDoctorById = async (req, res) => {
+  try {
+    let infor = await doctorService.getProfileDoctorByIdService(
+      req.query.doctorId
+    );
+    return res.status(200).json(
+      infor //là một object không cần {}
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(200).json({
+      errCode: -1,
+      message: "Error from server ...",
+    });
+  }
+};
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
@@ -99,4 +131,6 @@ module.exports = {
   getDetailDoctorById: getDetailDoctorById,
   bulkCreateSchedule: bulkCreateSchedule,
   getScheduleBuDate: getScheduleBuDate,
+  getExtraInforDoctorById: getExtraInforDoctorById,
+  getProfileDoctorById: getProfileDoctorById,
 };

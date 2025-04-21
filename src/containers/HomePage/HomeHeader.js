@@ -24,7 +24,7 @@ class HomeHeader extends Component {
         <div className="home-header-container">
           <div className="home-header-content">
             <div className="left-content">
-              <i class="fa-solid fa-bars"></i>
+              <i className="fa-solid fa-bars"></i>
               <img src={logo} onClick={() => this.returnHome()} />
               <div className="header-logo"></div>
             </div>
@@ -72,7 +72,7 @@ class HomeHeader extends Component {
             </div>
             <div className="right-content">
               <div className="support">
-                <i class="fa-solid fa-circle-question"></i>
+                <i className="fa-solid fa-circle-question"></i>
                 <FormattedMessage id="home-header.help" />
               </div>
               <div
@@ -106,7 +106,7 @@ class HomeHeader extends Component {
                   <FormattedMessage id="home-header.comprehensivehealthcare" />
                 </div>
                 <div className="search">
-                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <i className="fa-solid fa-magnifying-glass"></i>
                   <input placeholder="Tìm kiếm chuyên khoa" />
                 </div>
               </div>
@@ -114,7 +114,7 @@ class HomeHeader extends Component {
                 <div className="options">
                   <div className="option-child">
                     <div className="icon-child">
-                      <i class="fa-solid fa-hospital"></i>
+                      <i className="fa-solid fa-hospital"></i>
                     </div>
                     <div className="text-child">
                       <FormattedMessage id="home-header.specializedexamination" />
@@ -122,7 +122,7 @@ class HomeHeader extends Component {
                   </div>
                   <div className="option-child">
                     <div className="icon-child">
-                      <i class="fa-solid fa-mobile-screen-button"></i>
+                      <i className="fa-solid fa-mobile-screen-button"></i>
                     </div>
                     <div className="text-child">
                       <FormattedMessage id="home-header.remoteexamination" />
@@ -130,7 +130,7 @@ class HomeHeader extends Component {
                   </div>
                   <div className="option-child">
                     <div className="icon-child">
-                      <i class="fa-solid fa-bed-pulse"></i>
+                      <i className="fa-solid fa-bed-pulse"></i>
                     </div>
                     <div className="text-child">
                       <FormattedMessage id="home-header.generalexamination" />
@@ -138,7 +138,7 @@ class HomeHeader extends Component {
                   </div>
                   <div className="option-child">
                     <div className="icon-child">
-                      <i class="fa-solid fa-microscope"></i>
+                      <i className="fa-solid fa-microscope"></i>
                     </div>
                     <div className="text-child">
                       <FormattedMessage id="home-header.medicaltests" />
@@ -146,7 +146,7 @@ class HomeHeader extends Component {
                   </div>
                   <div className="option-child">
                     <div className="icon-child">
-                      <i class="fa-solid fa-user-doctor"></i>
+                      <i className="fa-solid fa-user-doctor"></i>
                     </div>
                     <div className="text-child">
                       <FormattedMessage id="home-header.mentalhealth" />
@@ -154,7 +154,7 @@ class HomeHeader extends Component {
                   </div>
                   <div className="option-child">
                     <div className="icon-child">
-                      <i class="fa-solid fa-tooth"></i>
+                      <i className="fa-solid fa-tooth"></i>
                     </div>
                     <div className="text-child">
                       <FormattedMessage id="home-header.dentalexamination" />

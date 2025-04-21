@@ -76,6 +76,18 @@ const getScheduleDoctorByDate = (inputId, dateInput) => {
     url: `/api/get-schedule-doctor-by-date?doctorId=${inputId}&dateInput=${dateInput}`,
   });
 };
+const getExtraInforDoctor = (inputId) => {
+  return axios({
+    method: "get",
+    url: `/api/get-extra-infor-doctor-by-id?doctorId=${inputId}`,
+  });
+};
+const getProfileDoctorById = (inputId) => {
+  return axios({
+    method: "get",
+    url: `/api/get-profile-doctor-by-id?doctorId=${inputId}`,
+  });
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -89,4 +101,6 @@ export {
   getDetailInforDoctor,
   saveBulkScheduleDoctor,
   getScheduleDoctorByDate,
+  getExtraInforDoctor,
+  getProfileDoctorById,
 };

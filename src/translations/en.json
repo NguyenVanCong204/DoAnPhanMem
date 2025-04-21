@@ -84,7 +84,14 @@
             "save-information":"Save information",
             "choose-price" : "Choose price...",
             "select-payment-method" : "Select payment method...",
-            "select-province" : "Select province..."
+            "select-province" : "Select province...",
+            "choose-a-doctor...":"Choose a doctor...",
+            "examination-address" :"Examination address",
+            "examination-price" : "Examination price : ",
+            "see-details" : "See details",
+            "examination-price-information" : "Examination price information",
+            "patients-can-pay-the-cost-by" : "Patients can pay the cost by : ",
+            "hide-price-list" : "Hide price list"
         }
     }
 }

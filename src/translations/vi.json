@@ -85,7 +85,14 @@
             "save-information":"Lưu thông tin",
             "choose-price" : "Chọn giá...",
             "select-payment-method" : "Chọn phương thức thanh toán...",
-            "select-province" : "Chọn tỉnh thành..."
+            "select-province" : "Chọn tỉnh thành...",
+            "choose-a-doctor...":"Chọn bác sĩ...",
+            "examination-address" :"Địa chỉ khám",
+            "examination-price" : "Gía khám :",
+            "see-details" : "Xem chi tiết",
+            "examination-price-information" : "Giá khám chưa bao gồm chi phí chụp chiếu, xét nghiệm.",
+            "patients-can-pay-the-cost-by" : "Người bệnh có thể thanh toán chi phí bằng hình thức : ",
+            "hide-price-list" : "Ẩn bảng giá"
         }
     }
 }

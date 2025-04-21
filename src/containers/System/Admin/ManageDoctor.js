@@ -86,6 +86,7 @@ class ManageDoctor extends Component {
       contentMarkdown: this.state.contentMarkdown,
       description: this.state.description,
       doctorId: this.state.selectedDoctor.value,
+
       priceId: this.state.selectedPrice.value,
       provinceId: this.state.selectedProvince.value,
       paymentId: this.state.selectedPayment.value,
@@ -105,11 +106,55 @@ class ManageDoctor extends Component {
   };
   handleChangeSelect = async (selectedDoctor) => {
     this.setState({ selectedDoctor });
-
     let res = await getDetailInforDoctor(selectedDoctor.value);
-    console.log(selectedDoctor.value);
+    console.log(res);
     if (res && res.errCode == 0 && res.data && res.data.Markdown) {
       let markdowwn = res.data.Markdown;
+      let Doctor_Infor = res.data.Doctor_Infor;
+      if (res.data.Doctor_Infor) {
+        let { listPrice, listPayment, listProvince } = this.state;
+
+        let priceId = Doctor_Infor.priceId;
+        let paymentId = Doctor_Infor.paymentId;
+        let provinceId = Doctor_Infor.provinceId;
+        let selectedPrice = "",
+          selectedPayment = "",
+          selectedProvince = "";
+
+        selectedPrice = listPrice.find((item) => {
+          if (item.value === priceId) {
+            return item;
+          }
+        });
+        selectedPayment = listPayment.find((item) => {
+          if (item.value === paymentId) {
+            return item;
+          }
+        });
+        selectedProvince = listProvince.find((item) => {
+          if (item.value === provinceId) {
+            return item;
+          }
+        });
+        console.log(selectedPrice, selectedPayment, selectedProvince);
+        this.setState({
+          selectedPrice: selectedPrice,
+          selectedPayment: selectedPayment,
+          selectedProvince: selectedProvince,
+          nameClinic: Doctor_Infor.nameClinic,
+          addressClinic: Doctor_Infor.addressClinic,
+          note: Doctor_Infor.note,
+        });
+      } else {
+        this.setState({
+          nameClinic: "",
+          addressClinic: "",
+          note: "",
+          selectedPrice: "",
+          selectedPayment: "",
+          selectedProvince: "",
+        });
+      }
       this.setState({
         contentMarkdown: markdowwn.contentMarkdown,
         contentHTML: markdowwn.contentHTML,
@@ -122,6 +167,13 @@ class ManageDoctor extends Component {
         contentHTML: "",
         description: "",
         hasOldData: false,
+
+        nameClinic: "",
+        addressClinic: "",
+        note: "",
+        selectedPrice: "",
+        selectedPayment: "",
+        selectedProvince: "",
       });
     }
   };
@@ -201,7 +253,9 @@ class ManageDoctor extends Component {
               value={this.state.selectedDoctor}
               onChange={this.handleChangeSelect}
               options={this.state.listDoctors}
-              placeholder={"Chọn bác sĩ..."}
+              placeholder={
+                <FormattedMessage id="admin.manage-doctor.choose-a-doctor..." />
+              }
             />
           </div>
           <div className="content-right">

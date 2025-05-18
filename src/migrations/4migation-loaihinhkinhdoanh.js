@@ -2,27 +2,15 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Schedules", {
-      id: {
+    await queryInterface.createTable("loaihinhkinhdoanhs", {
+      MaLoaiHinhKd: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      currentNumber: {
-        type: Sequelize.INTEGER,
-      },
-      maxBumber: {
-        type: Sequelize.INTEGER,
-      },
-      date: {
         type: Sequelize.STRING,
       },
-      timeType: {
+      TenLoaiHinhKd: {
+        allowNull: false,
         type: Sequelize.STRING,
-      },
-      doctorID: {
-        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +23,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Schedules");
+    await queryInterface.dropTable("loaihinhkinhdoanhs");
   },
 };

@@ -2,42 +2,53 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
-      id: {
+    await queryInterface.createTable("nguoidungs", {
+      MaNguoiDung: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      email: {
         type: Sequelize.STRING,
       },
-      password: {
+      MatKhau: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      firstName: {
+      HoTen: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      lastName: {
+      Sdt: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      address: {
+      Cccd: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      phonenumber: {
+      GioiTinh: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      gender: {
+      DiaChi: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      image: {
+      NgaySinh: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      roleId: {
+      Email: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
-      positionId: {
+      MaVaiTro: {
+        allowNull: false,
         type: Sequelize.STRING,
+        references: {
+          model: "vaitros",
+          key: "MAVAITRO",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       createdAt: {
         allowNull: false,
@@ -50,6 +61,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("nguoidungs");
   },
 };

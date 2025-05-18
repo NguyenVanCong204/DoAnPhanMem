@@ -2,44 +2,41 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("doctor_infor", {
-      id: {
+    await queryInterface.createTable("thamdinhs", {
+      MaThamDinh: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.STRING,
+      },
+      MaCoSoKinhDoanh: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        references: {
+          model: "cosokinhdoanhs",
+          key: "MACOSOKD",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      },
+      NgayThamDinh: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      TrangThai: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
-      doctorId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      priceId: {
+      HinhAnh: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      provinceId: {
+      TongTienPhat: {
+        allowNull: false,
+        type: Sequelize.FLOAT,
+      },
+      NoiDung: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      paymentId: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      addressClinic: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      nameClinic: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      note: {
-        type: Sequelize.STRING,
-      },
-      count: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
       },
       createdAt: {
         allowNull: false,
@@ -52,6 +49,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("doctor_infor");
+    await queryInterface.dropTable("thamdinhs");
   },
 };

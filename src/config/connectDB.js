@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize"); // import
 
 // Option 3: Truyền tham số riêng biệt (các phương ngữ khác)
-const sequelizeOther = new Sequelize("hoidanit", "root", null, {
+const sequelizeOther = new Sequelize("doanphanmem", "root", null, {
   //database name , user, passwwork
   host: "localhost",
   logging: false, //Tùy chọn này xác định xem bạn có muốn ghi lại các truy vấn SQL trong console hay không. false có nghĩa là không ghi lại.

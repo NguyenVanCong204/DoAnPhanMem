@@ -1,0 +1,280 @@
+.container {
+    width  : 100%;
+    display: contents;
+
+    .sticky-wrapper {
+        position: sticky; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        top     : 0; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        z-index : 1000; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+
+        .home-header-content {
+            width  : 100%;
+            height : 100px;
+            display: flex;
+
+            background: #369f6a;
+
+            .left-content {
+                height     : 80px;
+                width      : 25%;
+                display    : flex;
+                align-items: center;
+                padding    : 0 140px 0 20px;
+
+                .menu {
+                    height      : 30%;
+                    margin-right: 50px;
+                    margin-left : 10px;
+                    cursor      : pointer;
+                }
+
+                .logo {
+                    margin-top: 13px;
+                    height    : 150%;
+                    cursor    : pointer;
+                }
+
+                .fa-bars {
+                    font-size   : 25px;
+                    color       : gray;
+                    margin-left : 40px;
+                    margin-right: 20px;
+                }
+
+                .header-logo {
+
+                    background-size: contain;
+                    height         : 90%;
+                    width          : 100%;
+                    cursor         : pointer;
+                }
+            }
+
+            .center-content {
+                width          : 50%;
+                align-items    : center;
+                justify-content: end;
+                display        : flex;
+
+                .login {
+                    font-size     : 17px;
+                    color         : initial;
+                    font-family   : 'OpenSansSemiBold';
+                    text-transform: uppercase;
+                    color         : white;
+                    border        : none;
+                    border-radius : 20px;
+                    padding       : 4px 14px;
+                    background    : #193a8d;
+                    font-weight   : 600;
+                    margin-right  : 30px;
+                }
+
+                .regient {
+                    font-size     : 17px;
+                    color         : #193a8d;
+                    font-family   : 'OpenSansSemiBold';
+                    text-transform: uppercase;
+                    border        : 1px solid #193a8d;
+                    border-radius : 20px;
+                    padding       : 4px 25px;
+                    font-weight   : 600;
+                }
+
+
+            }
+
+            .right-content {
+                height         : 80px;
+                width          : 25%;
+                display        : flex;
+                margin-top     : 10px;
+                align-items    : center;
+                justify-content: end;
+
+                .support {
+                    padding-right: 150px;
+                    cursor       : pointer;
+
+                    i {
+                        padding  : 0 2px;
+                        font-size: 17px;
+                    }
+                }
+
+            }
+        }
+    }
+
+}
+
+.inspection-container {
+    width : 80%;
+    margin: auto;
+
+    .inspection-content {
+        .add-schedule {
+            align-items    : center;
+            justify-content: center;
+            display        : flex;
+            background     : #193a8d;
+            margin-left    : auto;
+            width          : 180px;
+            margin-right   : 10px;
+            padding        : 5px;
+            border-radius  : 9px;
+            margin-bottom  : 20px;
+
+            i {
+                margin: 0 5px;
+                cursor: pointer;
+                color : white;
+            }
+
+            button {
+                border     : none;
+                font-size  : 14px;
+                background : #193a8d;
+                color      : white;
+                font-weight: 600;
+                font-family: "OpenSansSemiBold";
+            }
+
+            &:hover {
+                background: #283e76;
+                cursor    : pointer;
+
+                button {
+                    color     : rgb(165, 148, 148);
+                    background: #283e76;
+                }
+
+                i {
+                    color     : rgb(165, 148, 148);
+                    background: #283e76;
+                }
+            }
+        }
+
+
+        .title {
+            font-size     : 22px;
+            text-transform: uppercase;
+            font-weight   : 600;
+            color         : #0071ba;
+            text-align    : center;
+            display       : block;
+            margin        : 30px auto;
+        }
+
+        .search-purpose {
+            display      : flex;
+            margin-bottom: 15px;
+
+            .list-business {
+                select {
+                    border-radius: 7px;
+                }
+
+                span {
+                    font-size: 19px;
+
+                }
+            }
+
+            .search {
+                margin-right   : 10px;
+                width          : fit-content;
+                display        : flex;
+                justify-content: center;
+                margin-left    : auto;
+                align-items    : center;
+                padding        : 10px;
+                background     : #49e7f5;
+                border-radius  : 25px;
+
+                i {
+                    margin: 0 5px;
+                    cursor: pointer;
+                }
+
+                input {
+                    height    : 18px;
+                    width     : 200px;
+                    background: transparent;
+                    outline   : none;
+                    border    : none;
+
+                }
+            }
+        }
+
+        .table-schedule {
+            max-height: 400px;
+            overflow-y: auto;
+
+
+            .TableManageUser {
+                font-family    : Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width          : 100%;
+                margin-bottom  : 30px;
+
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+
+                tr:hover {
+                    background-color: #ddd;
+                }
+
+                th {
+                    padding-top     : 12px;
+                    padding-bottom  : 12px;
+                    position        : sticky;
+                    top             : 0;
+                    z-index         : 2;
+                    text-align      : center;
+                    background-color: #04AA6D;
+                    color           : white;
+                }
+
+                th,
+                td {
+                    border    : 1px solid #ddd;
+                    padding   : 4px;
+                    cursor    : pointer;
+                    text-align: center;
+                }
+
+                .delete {
+                    color        : red;
+                    border-radius: 10px;
+                    padding      : 5px 15px;
+                    margin-right : 3px;
+                    background   : #f2f2f2;
+                    border       : 1px solid rgb(211, 211, 211);
+                    font-weight  : 100;
+
+                    &:hover {
+                        background: #b3b2b2;
+                    }
+                }
+
+                .update {
+                    color        : rgb(61, 126, 182);
+                    border-radius: 10px;
+                    font-weight  : 100;
+                    padding      : 5px 15px;
+                    margin-right : 3px;
+                    background   : #f2f2f2;
+                    border       : 1px solid rgb(211, 211, 211);
+
+                    &:hover {
+                        background: #b3b2b2;
+                    }
+                }
+            }
+        }
+    }
+}

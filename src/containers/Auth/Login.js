@@ -5,8 +5,6 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 
 import "./Login.scss";
-import { FormattedMessage } from "react-intl";
-import { handleLoginApi } from "../../services/userService";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -31,31 +29,6 @@ class Login extends Component {
       password: Event.target.value,
     });
   };
-  handleLogin = async () => {
-    this.setState({
-      errMessage: "",
-    });
-    try {
-      let data = await handleLoginApi(this.state.username, this.state.password);
-      if (data && data.errCode !== 0) {
-        this.setState({
-          errMessage: data.message,
-        });
-      } else if (data && data.errCode === 0) {
-        this.props.userLoginSuccess(data.user);
-        console.log("login succeeds");
-      }
-    } catch (error) {
-      if (error.response) {
-        if (error.response.data) {
-          this.setState({
-            errMessage: error.response.data.message,
-          });
-        }
-      }
-      console.log("Văn Công", error.response);
-    }
-  };
   handleShowHidePassword = () => {
     this.setState({
       isShowPassword: !this.state.isShowPassword,
@@ -66,29 +39,35 @@ class Login extends Component {
       this.handleLogin();
     }
   };
+  handleRegister = () => {
+    this.props.navigate("/register");
+  };
+  handleLogin = () => {
+    this.props.navigate("/home");
+  };
   render() {
     return (
       <div className="login-background">
         <div className="login-container">
           <div className="login-content row">
-            <div className="col-12 text-center text-login">Login</div>
+            <div className="col-12 text-center text-login">Đăng Nhập</div>
             <div className="col-12 form-group login-input">
-              <label>Username:</label>
+              <label>Email:</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your username"
+                placeholder="Nhập email của bạn"
                 value={this.state.username}
                 onChange={(Event) => this.handleOnChangeUsername(Event)}
               />
             </div>
             <div className="col-12 form-group login-input">
-              <label>Password:</label>
+              <label>Mật khẩu:</label>
               <div className="custom-input-password">
                 <input
                   type={this.state.isShowPassword ? "text" : "password"}
                   className="form-control"
-                  placeholder="Enter your password"
+                  placeholder="Nhập mật khẩu của bạn"
                   value={this.state.password}
                   onChange={(Event) => this.handleOnChangePassword(Event)}
                   onKeyDown={this.handleKeyDown}
@@ -114,14 +93,24 @@ class Login extends Component {
                   this.handleLogin();
                 }}
               >
-                Login
+                Đăng Nhập
               </button>
             </div>
             <div className="col-12">
-              <span className="forgot-password">Forgot your password?</span>
+              <button
+                className="btn-register"
+                onClick={() => {
+                  this.handleRegister();
+                }}
+              >
+                Đăng Kí
+              </button>
+            </div>
+            <div className="col-12">
+              <span className="forgot-password">Quên mật khẩu của bạn?</span>
             </div>
             <div className="col-12 text-center mt-3">
-              <span className="text-other-login">Or Login with:</span>
+              <span className="text-other-login">Đăng nhập bằng:</span>
             </div>
             <div className="col-12 social-login">
               <i className="fa-brands fa-google-plus-g gogle"></i>

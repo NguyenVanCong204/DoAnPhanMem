@@ -1,6 +1,6 @@
-.home-header-container {
+.container {
     width  : 100%;
-    display: inline;
+    display: contents;
 
     .sticky-wrapper {
         position: sticky; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
@@ -105,107 +105,83 @@
             }
         }
     }
+
 }
 
-.body-container {
-    width  : 90%;
-    display: flex;
-    margin : auto;
+.Information-containt {
+    width : 90%;
+    margin: auto;
 
-    .centent-right {
-        width: 50%;
-
-        .title {
-            padding-bottom: 10px;
-            padding-top   : 15px;
-            font-size     : 25px;
-        }
-
-        .body {
-            font-size: 16px;
-
-
-            ul {}
-
-            li {
-                list-style-type: none;
-                padding-bottom : 7px;
-
-                input {
-                    margin-top: 5px;
-                }
-            }
-
-            .btnUpdate {
-                display      : block;
-                margin       : auto;
-                border       : none;
-                padding      : 7px 25px;
-                border-radius: 12px;
-                background   : #193a8d;
-                color        : white;
-                font-weight  : 600;
-                font-family  : "OpenSansSemiBold";
-
-                &:hover {
-                    background: #3e5ba6;
-                    color     : rgb(170, 165, 165);
-                }
-            }
-        }
+    .title-license {
+        font-size     : 24px;
+        text-transform: uppercase;
+        font-weight   : 600;
+        color         : #0071ba;
+        text-align    : center;
+        margin-top    : 30px;
+        margin-bottom : 30px;
     }
 
-    .content-left {
-        width: 50%;
+    .form-group {
+        display       : flex;
+        flex-direction: column;
+        padding       : 8px 10px;
 
-        .title {
-            padding-bottom: 10px;
-            padding-top   : 15px;
-            font-size     : 25px;
+        label {
+            font-size     : 17px;
+            padding-bottom: 4px;
         }
 
-        .body {
-            font-size: 16px;
+        input {
+            font-size    : 16px;
+            padding      : 5px 10px;
+            border-radius: 4px;
+            border       : 1px solid black;
+        }
 
-            ul {
-                margin-top: 25px;
+        .viewfile {
+            cursor: pointer;
+        }
 
-                li {
-                    list-style-type: none;
-                    padding-bottom : 7px;
+        .view-image {
+            margin-top: 20px;
+            display   : flex;
 
-                    input {
-                        margin-top: 5px;
-                    }
+            .hinh1 {
+                width              : 300px;
+                height             : 200px;
+                background-repeat  : no-repeat;
+                background-position: center;
+                background-size    : cover;
+                margin-right       : 30px;
 
-                    .custom-input-password {
-                        position: relative;
-
-                        i {
-                            position: absolute;
-                            right   : 20px;
-                            top     : 10px;
-                            cursor  : pointer; //Hiện hình bàn tay
-                        }
-                    }
-                }
             }
 
-            .btnUpdatePassword {
-                display      : block;
-                margin       : auto;
-                border       : none;
-                padding      : 7px 10px;
-                border-radius: 12px;
-                background   : #193a8d;
-                color        : white;
-                font-weight  : 600;
-                font-family  : "OpenSansSemiBold";
+            .hinh2 {
+                width              : 300px;
+                height             : 200px;
+                background-repeat  : no-repeat;
+                background-position: center;
+                background-size    : cover;
 
-                &:hover {
-                    background: #3e5ba6;
-                    color     : rgb(170, 165, 165);
-                }
+            }
+        }
+
+        .browse-profile {
+            font-size     : 17px;
+            color         : #ffffff;
+            text-transform: uppercase;
+            background    : #193a8d;
+            border        : 1px solid #193a8d;
+            border-radius : 15px;
+            padding       : 4px 15px;
+            font-weight   : 100;
+            display       : block;
+            margin        : 40px auto;
+
+            &:hover {
+                color     : #c0b0b0;
+                background: #2c4584;
             }
         }
     }

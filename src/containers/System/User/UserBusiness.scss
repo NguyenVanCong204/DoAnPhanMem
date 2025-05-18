@@ -1,0 +1,276 @@
+.container {
+    width  : 100%;
+    display: contents;
+
+    .sticky-wrapper {
+        position: sticky; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        top     : 0; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        z-index : 1000; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+
+        .home-header-content {
+            width  : 100%;
+            height : 100px;
+            display: flex;
+
+            background: #369f6a;
+
+            .left-content {
+                height     : 80px;
+                width      : 25%;
+                display    : flex;
+                align-items: center;
+                padding    : 0 140px 0 20px;
+
+                .menu {
+                    height      : 30%;
+                    margin-right: 50px;
+                    margin-left : 10px;
+                    cursor      : pointer;
+                }
+
+                .logo {
+                    margin-top: 13px;
+                    height    : 150%;
+                    cursor    : pointer;
+                }
+
+                .fa-bars {
+                    font-size   : 25px;
+                    color       : gray;
+                    margin-left : 40px;
+                    margin-right: 20px;
+                }
+
+                .header-logo {
+
+                    background-size: contain;
+                    height         : 90%;
+                    width          : 100%;
+                    cursor         : pointer;
+                }
+            }
+
+            .center-content {
+                width          : 50%;
+                align-items    : center;
+                justify-content: end;
+                display        : flex;
+
+                .login {
+                    font-size     : 17px;
+                    color         : initial;
+                    font-family   : 'OpenSansSemiBold';
+                    text-transform: uppercase;
+                    color         : white;
+                    border        : none;
+                    border-radius : 20px;
+                    padding       : 4px 14px;
+                    background    : #193a8d;
+                    font-weight   : 600;
+                    margin-right  : 30px;
+                }
+
+                .regient {
+                    font-size     : 17px;
+                    color         : #193a8d;
+                    font-family   : 'OpenSansSemiBold';
+                    text-transform: uppercase;
+                    border        : 1px solid #193a8d;
+                    border-radius : 20px;
+                    padding       : 4px 25px;
+                    font-weight   : 600;
+                }
+
+
+            }
+
+            .right-content {
+                height         : 80px;
+                width          : 25%;
+                display        : flex;
+                margin-top     : 10px;
+                align-items    : center;
+                justify-content: end;
+
+                .support {
+                    padding-right: 150px;
+                    cursor       : pointer;
+
+                    i {
+                        padding  : 0 2px;
+                        font-size: 17px;
+                    }
+                }
+
+            }
+        }
+    }
+
+}
+
+.Business-container {
+    width : 90%;
+    margin: auto;
+
+    h5 {
+        font-size     : 22px;
+        text-transform: uppercase;
+        font-weight   : 600;
+        color         : #0071ba;
+        text-align    : center;
+        margin-top    : 30px;
+        margin-bottom : 20px;
+    }
+
+    button {
+        margin-bottom: 10px;
+        float        : right;
+        border       : none;
+        padding      : 7px 10px;
+        border-radius: 11px;
+        font-size    : 14px;
+        background   : #193a8d;
+        color        : white;
+        font-weight  : 600;
+        font-family  : "OpenSansSemiBold";
+
+        &:hover {
+            background: #283e76;
+            color     : rgb(165, 148, 148);
+        }
+    }
+
+    .TableManageUser {
+        margin-bottom  : 30px;
+        margin-top     : 10px;
+        font-family    : Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width          : 100%;
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        th {
+            padding-top     : 12px;
+            padding-bottom  : 12px;
+            text-align      : center;
+            background-color: #04AA6D;
+            color           : white;
+        }
+
+        th,
+        td {
+            border    : 1px solid #ddd;
+            padding   : 8px;
+            text-align: center;
+        }
+
+        .delete {
+            color        : red;
+            border-radius: 10px;
+            padding      : 5px 15px;
+            margin-right : 3px;
+            background   : #f2f2f2;
+            border       : 1px solid rgb(211, 211, 211);
+            font-weight  : 100;
+
+            &:hover {
+                background: #b3b2b2;
+            }
+        }
+
+        .update {
+            color        : rgb(61, 126, 182);
+            border-radius: 10px;
+            font-weight  : 100;
+            padding      : 5px 15px;
+            margin-right : 3px;
+            background   : #f2f2f2;
+            border       : 1px solid rgb(211, 211, 211);
+
+            &:hover {
+                background: #b3b2b2;
+            }
+        }
+    }
+}
+
+.model-user-header {
+    .title-header {
+        font-size     : 20px;
+        text-transform: uppercase;
+        font-weight   : 600;
+        color         : #0071ba;
+    }
+}
+
+.model-user-container {
+    .modal-header {
+        button {
+            background-color: transparent !important;
+            color           : white;
+            border          : none;
+            font-size       : 25px;
+            margin-left     : auto;
+        }
+    }
+
+    .model-user-body {
+        display  : flex;
+        gap      : 15px; //Quy định khoảng cách các thằng con bên trong
+        flex-wrap: wrap;
+
+        .input-container {
+            display: flex;
+            flex-direction: column; //Các phần tử con trong .input-container sẽ được sắp xếp theo chiều dọc, 
+            width: 49%; //nghĩa là mỗi trường nhập liệu sẽ nằm dưới nhau.         
+
+            .status {
+                label {
+                    font-size: 16px;
+                }
+
+                span {
+                    font-size: 17px;
+                    color    : #608090;
+                }
+            }
+
+            &.max-width {
+                //Cho nó nang cấp với thằng cha
+                width: 100%;
+            }
+
+            i {
+                cursor     : pointer;
+                margin-left: 10px;
+                font-size  : 18px;
+            }
+
+            input {
+                border-radius: 3px;
+                border       : 1px solid green;
+                padding      : 0 10px;
+                height       : 30px;
+            }
+
+            .title {
+                b {
+                    font-size: 18px;
+                }
+
+                .name {
+                    font-size     : 17px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+
+
+}

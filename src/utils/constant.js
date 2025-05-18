@@ -1,11 +1,21 @@
 export const path = {
-  HOME: "/",
   HOMEPAGE: "/home",
   LOGIN: "/login",
   LOG_OUT: "/logout",
   SYSTEM: "/system",
   DETAIL_DOCTOR: "/detail-doctor/:id",
   DOCTOR: "/doctor",
+  REGISTER: "/register",
+  USER: "/user",
+  COMPANY: "/company",
+  SHOP: "/shop",
+  LICENSE: "/license",
+  INSPECTIONSCHEDULE: "/inspectionschedule",
+  ADDINSPECTIONSCHEDULE: "/addinspectionschedule",
+  CATEGORYERROR: "/categoryerror",
+  LICENSEAPPROVAL: "/licenseapproval",
+  LICENSERECORDS: "/licenserecords",
+  SCHEDULEBUSINESS: "/schedulebusiness/:maLich",
 };
 
 export const languages = {

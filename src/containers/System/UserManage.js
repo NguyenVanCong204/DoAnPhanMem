@@ -1,228 +1,159 @@
-import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import './UserManage.scss';
-import {getAllUsers,createNewUserService,deleteUserService,updateUserService} from "../../services/userService"
-import ModalUser from './ModalUser';
-import { emitter } from '../../utils/emitter';
-import ModalEditUser from './ModalEditUser';
-
-
+import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
+import "./UserManage.scss";
+import logo from "../../assets/images/image.png";
+import menu from "../../assets/images/menu.png";
+import HomeSelection from "../HomeHeader/Section/HomeSelection";
+import { connect } from "react-redux";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import About from "../HomeHeader/Section/About";
 class UserManage extends Component {
+  state = {};
 
-    constructor(props){
-        super(props);
-        this.state={
-            arrUser: [],
-            isOpenModalUser: false,
-            isOpenModalEditUser:false,
-            userEdit:{}
-        }
-    }
+  componentDidMount() {}
 
-    async componentDidMount() {
-        await this.getAllUsersFromReact();
-    }
-
-    getAllUsersFromReact= async()=>{
-        let response = await getAllUsers('ALL');
-        if(response&& response.errCode===0){
-            this.setState({
-                arrUser:response.userData
-            })
-        }
-    }
-    
-
-    handleAddNewUser=()=>{
-        this.setState({
-            isOpenModalUser:true
-        })
-    }
-    toggleUserModal=()=>{
-        this.setState({
-            isOpenModalUser: ! this.state.isOpenModalUser
-        })
-    }
-    toggleEditUserModal=()=>{
-      this.setState({
-        isOpenModalEditUser: ! this.state.isOpenModalEditUser
-      })
-  }
-    createNewUser=async (data)=>{
-        try {
-            let reponse =await createNewUserService(data);
-            console.log(data)
-            if(reponse&&reponse.errCode!==0){
-                alert(reponse.message)         
-            }
-            else{
-                this.componentDidMount();
-                this.setState({
-                    isOpenModalUser:false
-                })
-                emitter.emit('EVENT_CLEAR_MODAL_DATA')  //Gán sự kiện thêm mới có tên là EVENT_CLEAR_MODAL_DATA
-            }
-            
-        } catch (e) {
-            console.log(e)
-        }
-    }
-    updateUser=async (data)=>{
-      try {
-        let reponse=await updateUserService(data);
-        console.log(reponse)
-        if(reponse&&reponse.errCode!=0){
-          alert(reponse.message)
-        }
-        else{
-          alert(reponse.message)
-          this.componentDidMount();
-                this.setState({
-                  isOpenModalEditUser: false,
-                });
-        }
-        
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    checkGender=(user)=>{
-      try {
-        if(user.gender===1){
-          return 'Made';
-        }
-        else if(user.gender===0){
-          return 'Female';
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    checkRoleId=(user)=>{
-      try {
-        if(user.roleId==='1'){
-          return 'Admin';
-        }
-        else if(user.roleId==='2'){
-          return 'Docter';
-        }
-        else if(user.roleId==='3'){
-          return 'Patient';
-        }
-        else{
-          return 'Không xác định';
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    
-    handleDeleteUser=async (user)=>{
-      try {
-        let res=await deleteUserService(user.id);
-        if(res&&res.errCode===0){
-          this.componentDidMount();
-        }
-        else{
-          alert(res.message);
-        }
-        
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    handleEditUser=(user)=>{
-      this.setState({
-        isOpenModalEditUser:true,
-        userEdit : user
-      })
-
-    }
-
-    render() {
-        let arrUsers=this.state.arrUser;
-        return (
-          <div className="users-container">
-            <ModalUser
-              isOpen={this.state.isOpenModalUser}
-              toggleFromParent={this.toggleUserModal}
-              createNewUser={this.createNewUser}
-            />
-            {
-              this.state.isOpenModalEditUser&&
-              <ModalEditUser
-                isOpen={this.state.isOpenModalEditUser}
-                toggleFromParent={this.toggleEditUserModal}
-                currentUser={this.state.userEdit}
-                updateUser={this.updateUser}
-              />
-            }
-            <div className="title text-center">Manage users with Eric</div>
-            <div className="mx-1">
-              <button
-                className="btn btn-primary px-3"
-                onClick={() => this.handleAddNewUser()}
-              >
-                <i className="fa-solid fa-plus"></i> Add new user
-              </button>
+  render() {
+    return (
+      <React.Fragment>
+        <div className="home-header-container">
+          <div className="sticky-wrapper">
+            <div className="home-header-content">
+              <div className="left-content">
+                <img className="menu" src={menu} />
+                <img className="logo" src={logo} />
+                <div className="header-logo"></div>
+              </div>
+              <div className="center-content">
+                <button className="login" onClick={() => this.handleLogin()}>
+                  đăng nhập
+                </button>
+                <button
+                  className="regient"
+                  onClick={() => this.handleRegister()}
+                >
+                  đăng kí
+                </button>
+              </div>
+              <div className="right-content">
+                <div className="support">
+                  <i className="fa-solid fa-circle-question"></i>
+                  <span>Hỗ trợ</span>
+                </div>
+              </div>
             </div>
-            <div className="users-table mt-3 mx-1">
-              <table id="customers">
-                <tbody>
-                  <tr>
-                    <th>Email</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Address</th>
-                    <th>Actions</th>
-                    <th>Gender</th>
-                    <th>RoleId</th>
-                  </tr>
-
-                  {arrUsers &&
-                    arrUsers.map((item, index) => {
-                      //Kiểm tra có tồn tại arrUsers //map vòng lặp item: dữ liệu index : Số dòng dữ liệu
-                      return (
-                        <tr>
-                          <td>{item.email}</td>
-                          <td>{item.firstName}</td>
-                          <td>{item.lastName}</td>
-                          <td>{item.address}</td>
-                          <td>{this.checkGender(item)}</td>
-                          <td>{this.checkRoleId(item)}</td>
-                          <td>
-                            <button
-                              className="btn-edit"
-                              onClick={() => this.handleEditUser(item)}
-                            >
-                              <i className="fa-solid fa-pencil-alt"></i>
-                            </button>
-                            <button
-                              className="btn-delete"
-                              onClick={() => this.handleDeleteUser(item)}
-                            >
-                              <i className="fa-solid fa-trash-can"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
+            <HomeSelection />
+          </div>
+        </div>
+        <div className="body-container">
+          <div className="centent-right">
+            <div className="title">Cập nhập thông tin cá nhân</div>
+            <div className="body">
+              <ul>
+                <li>
+                  <b>Họ và tên : </b>Nguyễn Văn Công
+                </li>
+                <li>
+                  <b>Ngày sinh : </b>25/06/2004
+                </li>
+                <li>
+                  <b>Email : </b>congnguyenvan522@gmail.com
+                </li>
+                <li>
+                  <b>Địa chỉ : </b>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Nhập địa chỉ của bạn"
+                  />
+                </li>
+                <li>
+                  <b>Số điện thoại : </b>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Nhập số điện thoại của bạn"
+                  />
+                </li>
+                <li>
+                  <FormControl>
+                    <label>Giới tính:</label>
+                    <RadioGroup
+                      row
+                      aria-labelledby="demo-row-radio-buttons-group-label"
+                      name="row-radio-buttons-group"
+                      onChange={this.handleGenderChange}
+                    >
+                      <FormControlLabel
+                        value="female"
+                        control={<Radio />}
+                        label="Nữ"
+                      />
+                      <FormControlLabel
+                        value="male"
+                        control={<Radio />}
+                        label="Nam"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </li>
+                <li>
+                  <b>Số CCCD/CMND : </b>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Nhập Số CCCD/CMND  của bạn"
+                  />
+                </li>
+              </ul>
+              <button className="btnUpdate">Cập nhập</button>
             </div>
           </div>
-        );
-    }
-
+          <div className="content-left">
+            <div className="title">Cập nhập mật khẩu</div>
+            <div className="body">
+              <ul>
+                <li>
+                  <b>Mật khẩu cũ : </b>
+                  <div className="custom-input-password">
+                    <input type="password" className="form-control" />
+                    <i className="fa-regular fa-eye" />
+                  </div>
+                </li>
+                <li>
+                  <b>Mật khẩu mới : </b>
+                  <div className="custom-input-password">
+                    <input type="password" className="form-control" />
+                    <i className="fa-regular fa-eye" />
+                  </div>
+                </li>
+                <li>
+                  <b>Nhập lại mật khẩu mới : </b>
+                  <div className="custom-input-password">
+                    <input type="password" className="form-control" />
+                    <i className="fa-regular fa-eye" />
+                  </div>
+                </li>
+              </ul>
+              <button className="btnUpdatePassword">Thay đổi mật khẩu</button>
+            </div>
+          </div>
+        </div>
+        <About />
+      </React.Fragment>
+    );
+  }
 }
 
-const mapStateToProps = state => {
-    return {
-    };
+const mapStateToProps = (state) => {
+  return {};
 };
-const mapDispatchToProps = dispatch => {
-    return {
-    };
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(UserManage);

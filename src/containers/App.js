@@ -12,13 +12,21 @@ import { path } from "../utils";
 import Home from "../routes/Home";
 //import Login from '../routes/Login';
 import Login from "./Auth/Login";
+import Register from "./Auth/Register";
 import Header from "./Header/Header";
 import System from "../routes/System";
-import { CustomToastCloseButton } from "../components/CustomToast";
-import HomePage from "./HomePage/HomePage";
 import CustomScrollbars from "../components/CustomScrollbars";
-import DetailDoctor from "./Patient/Doctor/DetailDoctor";
-import Doctor from "../routes/Doctor";
+import { Redirect } from "react-router-dom";
+import UserManage from "./System/UserManage";
+import Company from "./Patient/Company";
+import UserBusiness from "./System/User/UserBusiness";
+import License from "./System/User/License";
+import InspectionSchedule from "./System/User/InspectionSchedule";
+import AddInspectionSchedle from "./System/User/AddInspectionSchedle";
+import CotegoryError from "./System/User/CotegoryError";
+import LicenseApproval from "./System/User/LicenseApproval";
+import LicenseRecords from "./System/User/LicenseRecords";
+import ScheduleBusiness from "./System/User/ScheduleBusiness";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -48,7 +56,10 @@ class App extends Component {
               {/* //100vh == chiều cao màn hình khi kích thước lớn hơn 100 sẽ hiện scrollbars */}
               <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                 <Switch>
-                  <Route path={path.HOME} exact component={Home} />
+                  <Route
+                    path={path.HOMEPAGE}
+                    component={userIsNotAuthenticated(Home)}
+                  />
                   <Route
                     path={path.LOGIN}
                     component={userIsNotAuthenticated(Login)}
@@ -58,11 +69,51 @@ class App extends Component {
                     component={userIsAuthenticated(System)}
                   />
                   <Route
-                    path={path.DOCTOR}
-                    component={userIsAuthenticated(Doctor)}
+                    path={path.USER}
+                    component={userIsNotAuthenticated(UserManage)}
                   />
-                  <Route path={path.HOMEPAGE} component={HomePage} />
-                  <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                  <Route
+                    path={path.COMPANY}
+                    component={userIsNotAuthenticated(Company)}
+                  />
+                  <Route
+                    path={path.SHOP}
+                    component={userIsNotAuthenticated(UserBusiness)}
+                  />
+                  <Route
+                    path={path.LICENSE}
+                    component={userIsNotAuthenticated(License)}
+                  />
+                  <Route
+                    path={path.INSPECTIONSCHEDULE}
+                    component={userIsNotAuthenticated(InspectionSchedule)}
+                  />
+                  <Route
+                    path={path.ADDINSPECTIONSCHEDULE}
+                    component={userIsNotAuthenticated(AddInspectionSchedle)}
+                  />
+                  <Route
+                    path={path.LICENSERECORDS}
+                    component={userIsNotAuthenticated(LicenseRecords)}
+                  />
+                  <Route
+                    path={path.CATEGORYERROR}
+                    component={userIsNotAuthenticated(CotegoryError)}
+                  />
+                  <Route
+                    path={path.LICENSEAPPROVAL}
+                    component={userIsNotAuthenticated(LicenseApproval)}
+                  />
+                  <Route
+                    path={path.SCHEDULEBUSINESS}
+                    component={userIsNotAuthenticated(ScheduleBusiness)}
+                  />
+                  <Route
+                    path={path.REGISTER}
+                    component={userIsNotAuthenticated(Register)}
+                  />
+                  {/*Dòng này thêm vào để mặc định chuyển hướng về /login */}
+                  <Redirect exact from="/" to={path.LOGIN} />
                 </Switch>
               </CustomScrollbars>
             </div>

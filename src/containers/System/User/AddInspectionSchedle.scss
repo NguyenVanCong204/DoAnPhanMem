@@ -1,0 +1,292 @@
+.container {
+    width  : 100%;
+    display: contents;
+
+    .sticky-wrapper {
+        position: sticky; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        top     : 0; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        z-index : 1000; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+
+        .home-header-content {
+            width  : 100%;
+            height : 100px;
+            display: flex;
+
+            background: #369f6a;
+
+            .left-content {
+                height     : 80px;
+                width      : 25%;
+                display    : flex;
+                align-items: center;
+                padding    : 0 140px 0 20px;
+
+                .menu {
+                    height      : 30%;
+                    margin-right: 50px;
+                    margin-left : 10px;
+                    cursor      : pointer;
+                }
+
+                .logo {
+                    margin-top: 13px;
+                    height    : 150%;
+                    cursor    : pointer;
+                }
+
+                .fa-bars {
+                    font-size   : 25px;
+                    color       : gray;
+                    margin-left : 40px;
+                    margin-right: 20px;
+                }
+
+                .header-logo {
+
+                    background-size: contain;
+                    height         : 90%;
+                    width          : 100%;
+                    cursor         : pointer;
+                }
+            }
+
+            .center-content {
+                width          : 50%;
+                align-items    : center;
+                justify-content: end;
+                display        : flex;
+
+                .login {
+                    font-size     : 17px;
+                    color         : initial;
+                    font-family   : 'OpenSansSemiBold';
+                    text-transform: uppercase;
+                    color         : white;
+                    border        : none;
+                    border-radius : 20px;
+                    padding       : 4px 14px;
+                    background    : #193a8d;
+                    font-weight   : 600;
+                    margin-right  : 30px;
+                }
+
+                .regient {
+                    font-size     : 17px;
+                    color         : #193a8d;
+                    font-family   : 'OpenSansSemiBold';
+                    text-transform: uppercase;
+                    border        : 1px solid #193a8d;
+                    border-radius : 20px;
+                    padding       : 4px 25px;
+                    font-weight   : 600;
+                }
+
+
+            }
+
+            .right-content {
+                height         : 80px;
+                width          : 25%;
+                display        : flex;
+                margin-top     : 10px;
+                align-items    : center;
+                justify-content: end;
+
+                .support {
+                    padding-right: 150px;
+                    cursor       : pointer;
+
+                    i {
+                        padding  : 0 2px;
+                        font-size: 17px;
+                    }
+                }
+
+            }
+        }
+    }
+
+}
+
+.inspection-container {
+    .inspection-content {
+        .search-purpose {
+
+            .list-business {
+
+                display: flex;
+                gap    : 10px;
+
+                select {
+                    cursor: pointer;
+                }
+
+                span {
+                    font-size: 17px;
+                    width    : 200px;
+                }
+
+                .test-date {
+
+                    display: flex;
+
+                    .date-start {
+                        display    : flex;
+                        margin-left: 80px;
+                    }
+
+                    .date-end {
+                        display    : flex;
+                        margin-left: 50px;
+                    }
+
+                    input {
+                        border-radius: 5px;
+                        height       : 28px;
+                        border       : 1px solid black;
+                    }
+
+                    i {
+                        cursor     : pointer;
+                        font-size  : 18px;
+                        margin-left: -25px;
+                        margin-top : 5px;
+                    }
+                }
+            }
+        }
+
+        .table-schedule {
+            max-height: 320px;
+            overflow-y: auto;
+            margin    : 10px 0px;
+
+            .TableManageUser {
+                font-family    : Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width          : 100%;
+                margin-bottom  : 30px;
+
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+
+                tr:hover {
+                    background-color: #ddd;
+                }
+
+                th {
+                    padding-top     : 12px;
+                    padding-bottom  : 12px;
+                    position        : sticky;
+                    top             : 0;
+                    z-index         : 2;
+                    text-align      : center;
+                    background-color: #04AA6D;
+                    color           : white;
+                }
+
+                th,
+                td {
+                    border    : 1px solid #ddd;
+                    padding   : 14px;
+                    cursor    : pointer;
+                    text-align: center;
+                }
+            }
+        }
+
+        .title-search {
+            display        : flex;
+            justify-content: space-between;
+            margin-top     : 5px;
+            margin-bottom  : 5px;
+
+            .title-table {
+                font-size  : 25px;
+                font-weight: 600;
+                color      : #2b929b;
+            }
+
+            .search {
+                margin-right   : 10px;
+                width          : fit-content;
+                display        : flex;
+                justify-content: center;
+                margin-left    : auto;
+                align-items    : center;
+                padding        : 10px;
+                background     : #49e7f5;
+                border-radius  : 25px;
+
+                i {
+                    margin: 0 5px;
+                    cursor: pointer;
+                }
+
+                input {
+                    height    : 18px;
+                    width     : 200px;
+                    background: transparent;
+                    outline   : none;
+                    border    : none;
+
+                }
+            }
+        }
+
+
+
+        .personnel-check {
+            margin-bottom: 10px;
+            display      : flex;
+
+            span {
+                font-size   : 17px;
+                width       : 150px;
+                margin-right: 10px;
+            }
+
+            select {
+                font-size: 16px;
+                width    : 200px;
+            }
+        }
+
+        .note {
+            display      : flex;
+            margin-bottom: 50px;
+
+
+            span {
+                font-size   : 17px;
+                width       : 150px;
+                margin-right: 10px;
+            }
+
+            textarea {
+                width : 350px;
+                height: 70px;
+            }
+        }
+
+        .add-schedule1 {
+            font-size    : 17px;
+            display      : block;
+            margin-left  : auto;
+            border       : none;
+            padding      : 7px 20px;
+            border-radius: 9px;
+            background   : #193a8d;
+            color        : white;
+            font-weight  : 600;
+            font-family  : "OpenSansSemiBold";
+
+            &:hover {
+                background: #2e4b96;
+                color     : rgb(181, 181, 181);
+            }
+        }
+    }
+
+}

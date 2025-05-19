@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import _ from "lodash"; //Xử lí về amgr object
+import _ from "lodash";
 class ModalEditUserBusiness extends Component {
   constructor(props) {
     super(props);
@@ -28,9 +28,8 @@ class ModalEditUserBusiness extends Component {
           this.toggle();
         }}
         className="model-user-container"
-        size="lg" //Set độ rộng cho Modal sm md lg
-        centered //Cho Modal vào giữa màn hình
-        // form-group Lable sẽ đứng trên input
+        size="lg"
+        centered
       >
         <ModalHeader
           className="model-user-header"
@@ -57,7 +56,7 @@ class ModalEditUserBusiness extends Component {
             </div>
             <div className="input-container">
               <label>Địa chỉ</label>
-              <input type="password"></input>
+              <input type="text"></input>
             </div>
             <div className="input-container">
               <label>Số điện thoại</label>

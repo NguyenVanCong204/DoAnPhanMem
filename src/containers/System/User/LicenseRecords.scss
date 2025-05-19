@@ -3,9 +3,9 @@
     display: contents;
 
     .sticky-wrapper {
-        position: sticky; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
-        top     : 0; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
-        z-index : 1000; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        position: sticky;
+        top     : 0;
+        z-index : 1000;
 
         .home-header-content {
             width  : 100%;

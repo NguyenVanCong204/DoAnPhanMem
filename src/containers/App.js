@@ -10,14 +10,12 @@ import {
 } from "../hoc/authentication";
 import { path } from "../utils";
 import Home from "../routes/Home";
-//import Login from '../routes/Login';
 import Login from "./Auth/Login";
 import Register from "./Auth/Register";
-import Header from "./Header/Header";
 import System from "../routes/System";
 import CustomScrollbars from "../components/CustomScrollbars";
 import { Redirect } from "react-router-dom";
-import UserManage from "./System/UserManage";
+import PersonalInformation from "./System/PersonalInformation";
 import Company from "./Patient/Company";
 import UserBusiness from "./System/User/UserBusiness";
 import License from "./System/User/License";
@@ -27,6 +25,7 @@ import CotegoryError from "./System/User/CotegoryError";
 import LicenseApproval from "./System/User/LicenseApproval";
 import LicenseRecords from "./System/User/LicenseRecords";
 import ScheduleBusiness from "./System/User/ScheduleBusiness";
+import UserManage from "./System/Admin/UserManage";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -53,7 +52,6 @@ class App extends Component {
         <Router history={history}>
           <div className="main-container">
             <div className="content-container">
-              {/* //100vh == chiều cao màn hình khi kích thước lớn hơn 100 sẽ hiện scrollbars */}
               <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                 <Switch>
                   <Route
@@ -65,12 +63,16 @@ class App extends Component {
                     component={userIsNotAuthenticated(Login)}
                   />
                   <Route
+                    path={path.USERMANAGE}
+                    component={userIsNotAuthenticated(UserManage)}
+                  />
+                  <Route
                     path={path.SYSTEM}
                     component={userIsAuthenticated(System)}
                   />
                   <Route
                     path={path.USER}
-                    component={userIsNotAuthenticated(UserManage)}
+                    component={userIsNotAuthenticated(PersonalInformation)}
                   />
                   <Route
                     path={path.COMPANY}
@@ -112,7 +114,6 @@ class App extends Component {
                     path={path.REGISTER}
                     component={userIsNotAuthenticated(Register)}
                   />
-                  {/*Dòng này thêm vào để mặc định chuyển hướng về /login */}
                   <Redirect exact from="/" to={path.LOGIN} />
                 </Switch>
               </CustomScrollbars>

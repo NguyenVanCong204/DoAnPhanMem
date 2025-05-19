@@ -1,5 +1,5 @@
 .login-background {
-    height    : 100vh; //chiều cao bằng với màn hình
+    height    : 100vh;
     background: rgb(34, 193, 195);
     background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
 
@@ -11,7 +11,7 @@
         left         : 0;
         bottom       : 0;
         height       : 450px;
-        position     : absolute; //Đặt trên phần tử cha full màn hình vì set cao và rộng và auto nên nằm giữa
+        position     : absolute;
         background   : white;
         border-radius: 10px;
 
@@ -30,14 +30,14 @@
                 margin: 7px 0;
 
                 .custom-input-password {
-                    position: relative; //Set thuộc tính cha để thuộc tính con chỉ ăn ở trong này
+                    position: relative;
                 }
 
                 i {
                     position: absolute;
                     right   : 10px;
                     top     : 10px;
-                    cursor  : pointer; //Hiện hình bàn tay
+                    cursor  : pointer;
                 }
             }
 

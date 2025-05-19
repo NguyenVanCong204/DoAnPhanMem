@@ -107,9 +107,8 @@ class LicenseInspection extends Component {
           this.toggle();
         }}
         className="model-user-container"
-        size="lg" //Set độ rộng cho Modal sm md lg
-        centered //Cho Modal vào giữa màn hình
-        // form-group Lable sẽ đứng trên input
+        size="lg"
+        centered
       >
         <ModalHeader
           className="model-user-header"

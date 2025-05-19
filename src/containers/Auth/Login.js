@@ -34,16 +34,17 @@ class Login extends Component {
       isShowPassword: !this.state.isShowPassword,
     });
   };
-  handleKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      this.handleLogin();
-    }
-  };
   handleRegister = () => {
     this.props.navigate("/register");
   };
   handleLogin = () => {
-    this.props.navigate("/home");
+    let { username } = this.state;
+
+    if (username === "1") {
+      this.props.navigate("/usermanage");
+    } else {
+      this.props.navigate("/home");
+    }
   };
   render() {
     return (
@@ -132,7 +133,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    // userLoginFail: () => dispatch(actions.adminLoginFail()),
     userLoginSuccess: (userInfor) =>
       dispatch(actions.userLoginSuccess(userInfor)),
   };

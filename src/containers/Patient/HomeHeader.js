@@ -148,7 +148,6 @@ class HomeHeader extends Component {
             </div>
           )}
           <HomeBusiness />
-          {/* <div className="line2"></div> */}
           <About />
         </div>
       </React.Fragment>

@@ -3,9 +3,9 @@
     display: contents;
 
     .sticky-wrapper {
-        position: sticky; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
-        top     : 0; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
-        z-index : 1000; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        position: sticky;
+        top     : 0;
+        z-index : 1000;
 
         .home-header-content {
             width  : 100%;
@@ -265,13 +265,13 @@
 
     .model-user-body {
         display  : flex;
-        gap      : 15px; //Quy định khoảng cách các thằng con bên trong
+        gap      : 15px;
         flex-wrap: wrap;
 
         .input-container {
-            display: flex;
-            flex-direction: column; //Các phần tử con trong .input-container sẽ được sắp xếp theo chiều dọc, 
-            width: 49%; //nghĩa là mỗi trường nhập liệu sẽ nằm dưới nhau.         
+            display       : flex;
+            flex-direction: column;
+            width         : 49%;
 
             .status {
                 label {
@@ -285,7 +285,7 @@
             }
 
             &.max-width {
-                //Cho nó nang cấp với thằng cha
+
                 width: 100%;
             }
 

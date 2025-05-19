@@ -16,7 +16,7 @@ class AddInspectionSchedle extends Component {
     this.state = {
       startDate: null,
       endDate: null,
-      yesterday: new Date(new Date().setDate(new Date().getDate() - 1)), // nếu bạn cần minDate
+      yesterday: new Date(new Date().setDate(new Date().getDate() - 1)),
     };
   }
 
@@ -72,11 +72,7 @@ class AddInspectionSchedle extends Component {
             <div className="search-purpose">
               <div className="list-business">
                 <span>Mục đích thanh tra : </span>
-                <select
-                  style={{ height: "30px" }}
-                  //   value={this.state.selectedBusiness}
-                  //   onChange={this.handleBusinessChange}
-                >
+                <select style={{ height: "30px" }}>
                   <option value="1">Thanh tra thường niên</option>
                   <option value="2">Thanh tra cấp giấy phép</option>
                 </select>

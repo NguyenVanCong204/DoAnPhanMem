@@ -110,7 +110,6 @@ class InspectionSchedule extends Component {
                 <span>Mục đích thanh tra : </span>
                 <select
                   style={{ height: "30px" }}
-                  //   value={this.state.selectedBusiness}
                   onChange={this.handeScheduleChange}
                 >
                   <option value="0">Thanh tra thường niên</option>

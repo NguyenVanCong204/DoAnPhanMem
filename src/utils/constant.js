@@ -16,6 +16,7 @@ export const path = {
   LICENSEAPPROVAL: "/licenseapproval",
   LICENSERECORDS: "/licenserecords",
   SCHEDULEBUSINESS: "/schedulebusiness/:maLich",
+  USERMANAGE: "/usermanage",
 };
 
 export const languages = {

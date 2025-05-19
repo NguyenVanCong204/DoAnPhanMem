@@ -29,9 +29,8 @@ class ModalAddUserBusiness extends Component {
           this.toggle();
         }}
         className="model-user-container"
-        size="lg" //Set độ rộng cho Modal sm md lg
-        centered //Cho Modal vào giữa màn hình
-        // form-group Lable sẽ đứng trên input
+        size="lg"
+        centered
       >
         <ModalHeader
           className="model-user-header"
@@ -54,7 +53,7 @@ class ModalAddUserBusiness extends Component {
             </div>
             <div className="input-container">
               <label>Địa chỉ</label>
-              <input type="password"></input>
+              <input type="text"></input>
             </div>
             <div className="input-container">
               <label>Số điện thoại</label>
@@ -70,7 +69,7 @@ class ModalAddUserBusiness extends Component {
                 <input
                   type="text"
                   readOnly
-                  value={this.state.licenseFileName} // tên file sẽ hiện ở đây
+                  value={this.state.licenseFileName}
                 />
                 <i
                   className="fa-solid fa-upload"

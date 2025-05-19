@@ -1,11 +1,11 @@
-.home-header-container {
+.container {
     width  : 100%;
-    display: inline;
+    display: contents;
 
     .sticky-wrapper {
-        position: sticky; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
-        top     : 0; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
-        z-index : 1000; //Đặt cho phần header luôn fix cứng ở trên mỗi khi di chuyển
+        position: sticky;
+        top     : 0;
+        z-index : 1000;
 
         .home-header-content {
             width  : 100%;
@@ -105,107 +105,97 @@
             }
         }
     }
+
 }
 
-.body-container {
-    width  : 90%;
-    display: flex;
-    margin : auto;
+.User-container {
+    width : 90%;
+    margin: auto;
 
-    .centent-right {
-        width: 50%;
+    h5 {
+        font-size     : 22px;
+        text-transform: uppercase;
+        font-weight   : 600;
+        color         : #0071ba;
+        text-align    : center;
+        margin-top    : 30px;
+        margin-bottom : 20px;
+    }
 
-        .title {
-            padding-bottom: 10px;
-            padding-top   : 15px;
-            font-size     : 25px;
-        }
+    button {
+        margin-bottom: 10px;
+        float        : right;
+        border       : none;
+        padding      : 7px 10px;
+        border-radius: 11px;
+        font-size    : 14px;
+        background   : #193a8d;
+        color        : white;
+        font-weight  : 600;
+        font-family  : "OpenSansSemiBold";
 
-        .body {
-            font-size: 16px;
-
-
-            ul {}
-
-            li {
-                list-style-type: none;
-                padding-bottom : 7px;
-
-                input {
-                    margin-top: 5px;
-                }
-            }
-
-            .btnUpdate {
-                display      : block;
-                margin       : auto;
-                border       : none;
-                padding      : 7px 25px;
-                border-radius: 12px;
-                background   : #193a8d;
-                color        : white;
-                font-weight  : 600;
-                font-family  : "OpenSansSemiBold";
-
-                &:hover {
-                    background: #3e5ba6;
-                    color     : rgb(170, 165, 165);
-                }
-            }
+        &:hover {
+            background: #283e76;
+            color     : rgb(165, 148, 148);
         }
     }
 
-    .content-left {
-        width: 50%;
+    .TableManageUser {
+        margin-bottom  : 30px;
+        margin-top     : 10px;
+        font-family    : Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width          : 100%;
 
-        .title {
-            padding-bottom: 10px;
-            padding-top   : 15px;
-            font-size     : 25px;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
 
-        .body {
-            font-size: 16px;
+        tr:hover {
+            background-color: #ddd;
+        }
 
-            ul {
-                margin-top: 25px;
+        th {
+            padding-top     : 12px;
+            padding-bottom  : 12px;
+            text-align      : center;
+            background-color: #04AA6D;
+            color           : white;
+        }
 
-                li {
-                    list-style-type: none;
-                    padding-bottom : 7px;
+        th,
+        td {
+            border    : 1px solid #ddd;
+            padding   : 8px;
+            text-align: center;
+        }
 
-                    input {
-                        margin-top: 5px;
-                    }
+        .delete {
+            color        : red;
+            border-radius: 10px;
+            padding      : 5px 15px;
+            background   : #f2f2f2;
+            border       : 1px solid rgb(211, 211, 211);
+            font-weight  : 100;
+            float        : none;
 
-                    .custom-input-password {
-                        position: relative;
-
-                        i {
-                            position: absolute;
-                            right   : 20px;
-                            top     : 10px;
-                            cursor  : pointer; //Hiện hình bàn tay
-                        }
-                    }
-                }
+            &:hover {
+                background: #b3b2b2;
             }
+        }
 
-            .btnUpdatePassword {
-                display      : block;
-                margin       : auto;
-                border       : none;
-                padding      : 7px 10px;
-                border-radius: 12px;
-                background   : #193a8d;
-                color        : white;
-                font-weight  : 600;
-                font-family  : "OpenSansSemiBold";
+        .update {
+            color        : rgb(61, 126, 182);
+            border-radius: 10px;
+            float        : none;
+            font-weight  : 100;
+            padding      : 5px 15px;
+            margin-right : 5px;
+            background   : #f2f2f2;
+            border       : 1px solid rgb(211, 211, 211);
 
-                &:hover {
-                    background: #3e5ba6;
-                    color     : rgb(170, 165, 165);
-                }
+            &:hover {
+                background: #b3b2b2;
             }
         }
     }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
-import "./UserManage.scss";
+import "./PersonalInformation.scss";
 import logo from "../../assets/images/image.png";
 import menu from "../../assets/images/menu.png";
 import HomeSelection from "../HomeHeader/Section/HomeSelection";
@@ -11,9 +11,14 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import About from "../HomeHeader/Section/About";
-class UserManage extends Component {
-  state = {};
-
+import { push } from "connected-react-router";
+class PersonalInformation extends Component {
+  handleRegister = () => {
+    this.props.navigate("/register");
+  };
+  handleLogin = () => {
+    this.props.navigate("/login");
+  };
   componentDidMount() {}
 
   render() {
@@ -153,7 +158,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return { navigate: (path) => dispatch(push(path)) };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserManage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PersonalInformation);

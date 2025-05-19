@@ -1,25 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
-import Header from "../containers/Header/Header";
-import UserManage from "../containers/System/UserManage";
+import PersonalInformation from "../containers/System/PersonalInformation";
 
 class System extends Component {
   render() {
     const { systemMenuPath, isLoggedIn } = this.props;
     return (
-      // Vì trong return chỉ đưa ra một khối ma fmk có 2 khối nên phải gộp thành một (Khối trong suốt)
       <React.Fragment>
-        {isLoggedIn && <Header />}
         <div className="system-container">
           <div className="system-list">
             <Switch>
-              {/* <Route
-                component={() => {
-                  return <Redirect to={systemMenuPath} />;
-                }}
-              /> */}
-              <Route path="/system/user-manage" component={UserManage} />
+              <Route
+                path="/system/user-manage"
+                component={PersonalInformation}
+              />
               <Route
                 component={() => {
                   return <Redirect to={systemMenuPath} />;

@@ -11,9 +11,7 @@ let getInspectionSchedule = async (req, res) => {
     let infor = await userService.getInspectionScheduleService(
       req.query.mucdich
     );
-    return res.status(200).json(
-      infor //là một object không cần {}
-    );
+    return res.status(200).json(infor);
   } catch (error) {
     console.log(error);
     res.status(200).json({
@@ -25,9 +23,7 @@ let getInspectionSchedule = async (req, res) => {
 let getBusinessSchedule = async (req, res) => {
   try {
     let infor = await userService.getBusinessScheduleService(req.query.malich);
-    return res.status(200).json(
-      infor //là một object không cần {}
-    );
+    return res.status(200).json(infor);
   } catch (error) {
     console.log(error);
     res.status(200).json({
@@ -39,9 +35,7 @@ let getBusinessSchedule = async (req, res) => {
 let getErrorPunish = async (req, res) => {
   try {
     let infor = await userService.getErrorPunishService();
-    return res.status(200).json(
-      infor //là một object không cần {}
-    );
+    return res.status(200).json(infor);
   } catch (error) {
     console.log(error);
     res.status(200).json({
@@ -53,9 +47,7 @@ let getErrorPunish = async (req, res) => {
 let getFacilityOwner = async (req, res) => {
   try {
     let infor = await userService.getFacilityOwnerService(req.query.macoso);
-    return res.status(200).json(
-      infor //là một object không cần {}
-    );
+    return res.status(200).json(infor);
   } catch (error) {
     console.log(error);
     res.status(200).json({

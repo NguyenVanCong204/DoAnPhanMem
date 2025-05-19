@@ -1,40 +1,33 @@
 import express from "express";
 import bodyParser from "body-parser";
 import viewEngine from "./config/ViewEngine";
-import initWebRoutes from './route/web';
-import connectDB from './config/connectDB';
-// import cors from 'cors';
-// app.use(cors({ credentials: true, origin: true }));  //Cho phép tất cả các client lấy dữ liệu
+import initWebRoutes from "./route/web";
+import connectDB from "./config/connectDB";
 
-require('dotenv').config();
+require("dotenv").config();
 
-let app=express();
+let app = express();
 
-app.use(function (req, res, next) {  //Tạo một middleware để kiểm tra ip
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", process.env.URL_REACT);
 
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', process.env.URL_REACT);  //Chỉ cho phép từ host 3000 truy cập 
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
 
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader("Access-Control-Allow-Credentials", true);
 
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
+  next();
 });
 
-
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: true}));
-
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb',extended:true}));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 viewEngine(app);
 initWebRoutes(app);
@@ -42,6 +35,6 @@ initWebRoutes(app);
 connectDB();
 
 let port = process.env.PORT || 6969;
-app.listen(port, ()=>{
-    console.log("Backend NodeJS is runing on the port : "+port)
-})
+app.listen(port, () => {
+  console.log("Backend NodeJS is runing on the port : " + port);
+});
